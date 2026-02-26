@@ -151,3 +151,20 @@ break;
     }
     break;
 }
+
+// --- LÓGICA DE SEPARAÇÃO (Evitar um dentro do outro) ---
+var _vizinho = instance_place(x, y, obj_zumbi); // Procura outro zumbi tocando nele
+
+if (_vizinho != noone) 
+{
+    // Se o outro zumbi estiver à esquerda, este zumbi vai um pouco para a direita
+    // Se estiver à direita, este vai para a esquerda
+    var _direcao_empurrao = sign(x - _vizinho.x);
+    
+    // Se estiverem exatamente no mesmo lugar (x == _vizinho.x), o sign dá 0. 
+    // Forçamos um lado para eles não travarem.
+    if (_direcao_empurrao == 0) _direcao_empurrao = 1; 
+
+    // O 0.5 é a força do empurrão. Se quiser que eles se separem rápido, aumente para 1 ou 2.
+    hsp += _direcao_empurrao * 0.5; 
+}

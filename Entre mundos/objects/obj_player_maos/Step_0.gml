@@ -22,11 +22,11 @@ if (_key_fire && obj_player.pode_atirar)
 		
 		// Dentro do código de tiro:
 		if (instance_exists(obj_camera)) {
-		    obj_camera.shake_power = 1; // Ajuste esse número para tremer mais ou menos
+		    obj_camera.shake_power = 2; // Ajuste esse número para tremer mais ou menos
 		}
 			// Ativa o tremor da câmera
 		if (instance_exists(obj_camera)) {
-		    obj_camera.shake_intensidade = 2; // 4 é um tremor médio. 10 seria um terremoto!
+		    obj_camera.shake_intensidade = 1; // 4 é um tremor médio. 10 seria um terremoto!
 		}
     }
     // CASO B: NÃO TEM MUNIÇÃO (ESFAQUEIA)

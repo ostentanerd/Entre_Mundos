@@ -10,6 +10,9 @@ hp = irandom_range(5, 8);
 velocidade = 0.5;
 dist_perceber = 150;
 flash = 0;
+hsp = 0; // Velocidade horizontal
+vsp = 0; // Velocidade vertical
+vel = 1.5; // Velocidade de perseguição (ajuste como quiser)
 
 // 3. POR ÚLTIMO: Sorteamos o estado inicial
 // Agora o GameMaker já sabe o que é ESTADO_NORMAL.PARADO etc.

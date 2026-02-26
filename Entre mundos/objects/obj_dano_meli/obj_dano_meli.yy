@@ -4,7 +4,7 @@
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"obj_zumbi_normal","path":"objects/obj_zumbi_normal/obj_zumbi_normal.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"obj_zumbi","path":"objects/obj_zumbi/obj_zumbi.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_dano_meli",
@@ -35,9 +35,6 @@
     "name":"spr_dano",
     "path":"sprites/spr_dano/spr_dano.yy",
   },
-  "spriteMaskId":{
-    "name":"spr_mao_pistola_facada",
-    "path":"sprites/spr_mao_pistola_facada/spr_mao_pistola_facada.yy",
-  },
+  "spriteMaskId":null,
   "visible":false,
 }

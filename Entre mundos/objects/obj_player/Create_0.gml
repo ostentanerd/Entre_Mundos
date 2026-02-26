@@ -36,10 +36,12 @@ pode_tomar_dano = true;
 distancia_knockback = 4; // Força do empurrão
 
 
+global.luz_acesa = false; // A lanterna começa desligada
+
 // Criando o objeto das mãos
 meus_bracos = instance_create_layer(x, y, "Instances", obj_player_maos);
 
-meu_lanterna = instance_create_layer(x, y, "Lanterna", obj_lanterna_apagada);
+meu_lanterna = instance_create_layer(x, y, "Lanterna", obj_lanterna);
 
 
 

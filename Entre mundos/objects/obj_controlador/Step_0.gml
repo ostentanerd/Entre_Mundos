@@ -15,7 +15,7 @@ if (criados < quantidade_inimigos) {
         var _spawn_y = 109; 
 
         // 4. Cria o zumbi na layer "Inimigo"
-        var _zumbi = instance_create_layer(_spawn_x, _spawn_y, "Inimigo", obj_zumbi_normal);
+        var _zumbi = instance_create_layer(_spawn_x, _spawn_y, "Inimigo", obj_zumbi);
         
         _zumbi.meu_spawner = id; 
         

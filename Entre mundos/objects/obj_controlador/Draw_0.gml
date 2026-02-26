@@ -26,11 +26,17 @@ surface_set_target(surf);
     gpu_set_blendmode(bm_subtract);
 
     // --- LUZ DA LANTERNA ---
-    if (obj_player.lanterna_ligada) {
-        // Desenhamos a luz na posição do player (ajustada para a surface)
-        draw_sprite_ext(spr_luz_suave, 0, _px - _cx, (_py - 10) - _cy, 2.5, 2.5, 0, c_white, 1);
+  
+	// --- LUZ DA LANTERNA ---
+if (global.luz_acesa) {
+    // Procuramos o objeto que representa a lanterna
+    var _inst_lanterna = instance_find(obj_lanterna, 0); 
+    
+    if (_inst_lanterna != noone) {
+        // Desenhamos o "furo" na superfície na posição da lanterna
+        draw_sprite_ext(spr_luz_suave, 0, _inst_lanterna.x - _cx, _inst_lanterna.y - _cy, 2.5, 2.5, 0, c_white, 1);
     }
-	
+}
 	// --- LUZ DAS VELAS (ADICIONADO) ---
     // O 'with' faz o código rodar para TODAS as velas da sala ao mesmo tempo
     with (obj_vela) {

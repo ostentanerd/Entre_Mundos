@@ -53,22 +53,8 @@ if (vida <= 0) {
     exit; // PARA TUDO AQUI. O código abaixo não será lido se estiver morto.
 }
 
-// --- DAQUI PARA BAIXO É O SEU CÓDIGO ORIGINAL (INPUTS, MOVIMENTO, ETC) ---
-
-/// --- INPUTS ---
-var _key_left      = keyboard_check(ord("A"))  ||  keyboard_check(vk_left);
-var _key_right     = keyboard_check(ord("D"))  ||  keyboard_check(vk_right);
-// ... resto dos seus inputs ...
 
 
-
-
-
-//  ---- LÓGICA DA LANTERNA ----
-if (_key_flashlight)
-{
-    lanterna_ligada  =  !lanterna_ligada;
-}
 
 if (brilho_tiro > 0) brilho_tiro -= 0.15; // Velocidade do clarão
 
