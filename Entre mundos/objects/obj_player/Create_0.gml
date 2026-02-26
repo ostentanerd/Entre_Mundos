@@ -62,3 +62,4 @@ part_type_speed(global.part_sangue, 1, 2, -0.07, 0);   // Velocidade de saída
 part_type_direction(global.part_sangue, 0, 360, 0, 0);// Direção (para todos os lados)
 part_type_gravity(global.part_sangue, 0.5, 270);      // Gravidade (270 é para baixo)
 part_type_life(global.part_sangue, 5, 10);           // Quanto tempo dura (frames)
+

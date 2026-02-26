@@ -34,7 +34,7 @@
     {"id":{"name":"fnt_hud","path":"fonts/fnt_hud/fnt_hud.yy",},},
     {"id":{"name":"fnt_itens","path":"fonts/fnt_itens/fnt_itens.yy",},},
     {"id":{"name":"obj_bala","path":"objects/obj_bala/obj_bala.yy",},},
-    {"id":{"name":"obj_cam","path":"objects/obj_cam/obj_cam.yy",},},
+    {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
     {"id":{"name":"obj_chao_normal","path":"objects/obj_chao_normal/obj_chao_normal.yy",},},
     {"id":{"name":"obj_controlador","path":"objects/obj_controlador/obj_controlador.yy",},},
     {"id":{"name":"obj_dano_meli","path":"objects/obj_dano_meli/obj_dano_meli.yy",},},
