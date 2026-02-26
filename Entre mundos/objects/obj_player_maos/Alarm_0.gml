@@ -1,0 +1,1 @@
+municao = 10; // A caixa começa com 10

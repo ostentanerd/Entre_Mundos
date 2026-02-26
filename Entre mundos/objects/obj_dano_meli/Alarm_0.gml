@@ -1,0 +1,1 @@
+instance_destroy(); // Ele some para não dar dano infinito
