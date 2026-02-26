@@ -35,6 +35,9 @@
     "name":"spr_dano",
     "path":"sprites/spr_dano/spr_dano.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"spr_mao_pistola_facada",
+    "path":"sprites/spr_mao_pistola_facada/spr_mao_pistola_facada.yy",
+  },
   "visible":false,
 }

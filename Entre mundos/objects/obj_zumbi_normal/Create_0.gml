@@ -6,7 +6,7 @@ event_inherited();
 enum ESTADO_NORMAL { PARADO, ANDANDO, ATACANDO, MORTO, CAIDO }
 
 // 2. DEPOIS: Definimos as variáveis básicas
-hp = irandom_range(4, 8);
+hp = irandom_range(5, 8);
 velocidade = 0.5;
 dist_perceber = 150;
 flash = 0;
