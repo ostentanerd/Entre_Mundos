@@ -45,7 +45,7 @@ if (global.luz_acesa) {
         
         // Desenhamos a luz da vela. 
         // Importante: usamos x - _cx para alinhar com a câmera
-        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 15) - _cy, _oscilacao, _oscilacao, 0, c_white, 0.8);
+        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 15) - _cy, _oscilacao, _oscilacao, 0, c_yellow, 1);
     }
 	
 	

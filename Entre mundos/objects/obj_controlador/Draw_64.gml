@@ -29,7 +29,7 @@ if (obj_player.mao_atual == 1)
     draw_sprite(spr_hud_arma, 0, _x, _y );
     
     // Desenha o ícone de munição (em cima da vida ou perto do número)
-    draw_sprite(spr_hud_municao, 0, _x, _y);
+    draw_sprite(spr_item_municao, 0, _x - 13, _y + 5);
 }
 
 // --- 4. DESENHA O NÚMERO DE MUNIÇÃO ---
@@ -53,9 +53,10 @@ draw_set_valign(fa_top);
 
 
 // --- EXIBIR CARTÃO NA HUD (LADO DIREITO SUPERIOR) ---
-if (obj_player.tem_cartao) {
+if (obj_player.tem_cartao) 
+{
     var _cx = 290; // Posição X que você pediu
-    var _cy = 30;  // Posição Y que você pediu
+    var _cy = 18;  // Posição Y que você pediu
     
     // 1. Desenha a Sprite do Cartão
     // O 'subimg' 0 é o primeiro frame. 
@@ -76,8 +77,108 @@ if (obj_player.tem_cartao) {
     draw_text(_cx - 20, _cy + 16, "KayCard"); // Texto principal
 }
 
+
+
+// Certifique-se de que o player existe
+if (instance_exists(obj_player)) {
+    
+    // --- 1. RESET DE ESTILO (Isso impede que o texto mude de tamanho ou lugar) ---
+    draw_set_font(fnt_hud);      // Certifique-se de ter criado essa fonte (Passo anterior)
+    draw_set_halign(fa_left);    // Alinha o texto à esquerda
+    draw_set_valign(fa_top);     // Alinha o texto pelo topo
+    
+    // --- 2. LÓGICA DE TRANSPARÊNCIA ---
+    // Ajustei para 5, que é o seu HP máximo que definimos antes
+    var _alpha_hud = (obj_player.vida < 5) ? 1 : 0.3;
+    
+    // --- 3. COORDENADAS FIXAS ---
+    var _posX = 13;
+    var _posY = 45;
+
+    // Desenha o Ícone
+    draw_sprite_ext(spr_medkit, 0, _posX, _posY, 1, 1, 0, c_white, _alpha_hud);
+    
+    // Desenha o Texto (Ajustado para ficar ao lado do ícone: _posX + 15)
+    // Se o texto estiver muito alto ou baixo, mude o _posY + 2
+    draw_text_color(_posX + 8, _posY - 6, "x" + string(obj_player.medkits), c_white, c_white, c_white, c_white, _alpha_hud);
+	
+	
+	if (instance_exists(obj_porta_elevador)) {
+        var _p = obj_porta_elevador;
+        
+        // Se a porta começou a abrir
+        if (_p.sprite_index == spr_porta_abrindo) {
+            
+            // O fade_alpha sobe bem devagar
+            // 0.005 fará o ecrã levar cerca de 3 a 4 segundos para ficar todo preto
+            if (fade_alpha < 1) {
+                fade_alpha += 0.0007; 
+            }
+            
+            // Desenha o retângulo preto
+            draw_set_alpha(fade_alpha);
+            draw_set_color(c_black);
+            draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);
+            
+            // RESET (Obrigatório)
+            draw_set_alpha(1);
+            draw_set_color(c_white);
+        }
+		
+		// --- MENSAGEM DE ACESSO AUTORIZADO ---
+// 1. Verificamos se a porta existe na fase
+if (instance_exists(obj_porta_elevador)) 
+{
+    // Criamos uma variável curta '_p' para facilitar a escrita
+    var _p = obj_porta_elevador; 
+
+    // 2. Só desenha se a porta estiver aberta E ainda estiver no início da animação (frames 0 a 10)
+    // Aumentei para 10 para dar tempo do player ler a mensagem!
+    if (_p.aberta && _p.image_index < 10) 
+    {
+        // --- CONFIGURAÇÃO DO TEXTO (Importante para iniciantes!) ---
+        draw_set_font(fnt_hud);       // Define a sua fonte
+        draw_set_halign(fa_center);   // Centraliza o texto horizontalmente
+        draw_set_valign(fa_middle);   // Centraliza o texto verticalmente
+        
+        var _gx = display_get_gui_width() / 2;  // Meio da tela (X)
+        var _gy = display_get_gui_height() - 40; // Perto do rodapé (Y)
+
+        // 3. DESENHA UMA SOMBRA (Para o texto não sumir no cenário claro)
+        draw_set_color(c_black);
+        draw_text(_gx + 2, _gy + 2, "ACESSO AUTORIZADO");
+
+        // 4. DESENHA O TEXTO PRINCIPAL EM VERDE LIMA
+        draw_set_color(c_lime);
+        draw_text(_gx, _gy, "ACESSO AUTORIZADO");
+
+        // --- RESETAR CONFIGURAÇÕES ---
+        // Isso é OBRIGATÓRIO para não estragar os outros desenhos do jogo
+        draw_set_color(c_white);
+        draw_set_halign(fa_left); // Volta o alinhamento para a esquerda
+        draw_set_valign(fa_top);  // Volta o alinhamento para o topo
+    }
+    }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 // Reseta as cores para o padrão
 draw_set_color(c_white);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
+
+
+
+
+
 

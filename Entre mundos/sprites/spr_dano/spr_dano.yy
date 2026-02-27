@@ -24,7 +24,7 @@
   ],
   "name":"spr_dano",
   "nineSlice":null,
-  "origin":9,
+  "origin":7,
   "parent":{
     "name":"Player",
     "path":"folders/Sprite/Player.yy",
@@ -76,7 +76,7 @@
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":8,
+    "xorigin":14,
     "yorigin":29,
   },
   "swatchColours":null,

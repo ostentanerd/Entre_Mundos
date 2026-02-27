@@ -10,8 +10,8 @@
   "name":"obj_dano_meli",
   "overriddenProperties":[],
   "parent":{
-    "name":"grp_Player",
-    "path":"folders/Object/grp_Player.yy",
+    "name":"grp_payer",
+    "path":"folders/Object/grp_payer.yy",
   },
   "parentObjectId":null,
   "persistent":false,

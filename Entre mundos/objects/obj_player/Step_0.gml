@@ -138,6 +138,13 @@ if (_key_interact)
             show_debug_message("Pegou o Cartão Verde!");
         }
         
+     // --- ADICIONE ESTA PARTE PARA O MEDKIT ---
+        else if (_item.tipo == "medkit") 
+        {
+            medkits += 1; 
+            show_debug_message("Pegou um Medkit!");
+        }
+        
         instance_destroy(_item);
     }
 }
@@ -193,20 +200,8 @@ if (instance_exists(meu_lanterna))
     // meu_lanterna.image_xscale = face; 
 }
 
-if (keyboard_check_pressed(ord("L"))) 
-{
-    if (instance_exists(meu_lanterna)) 
-{
-        // Se o sprite atual for o da apagada, muda para acesa
-        if (meu_lanterna.sprite_index == spr_lanterna_apagada) {
-            meu_lanterna.sprite_index = spr_lanterna_acesa;
-            show_debug_message("Lanterna Ligada");
-        } else {
-            meu_lanterna.sprite_index = spr_lanterna_apagada;
-            show_debug_message("Lanterna Desligada");
-        }
-    }
-}
+
+
 
 if (!pode_tomar_dano) {
     // Faz o sprite ficar meio transparente e voltar rapidamente
@@ -215,3 +210,38 @@ if (!pode_tomar_dano) {
     image_alpha = 1;
 }
 
+
+
+
+
+var _key_heal = keyboard_check_pressed(ord("U"));
+
+if (_key_heal) 
+{
+    // 1. Verificamos se tem medkit
+    if (medkits > 0) 
+    {
+        // 2. Verificamos se ele REALMENTE precisa de cura (vida menor que 10)
+        // Substitua o '10' pela sua variável de vida máxima se você tiver uma
+        if (vida < 5) 
+        {
+            medkits -= 1; // Gasta o item
+            
+            var _cura = irandom_range(2, 5); // Sorteia a cura entre 2 e 5
+            vida += _cura; // Aplica a cura
+            
+            // Garante que não passe do limite máximo
+            if (vida > 5) vida = 5; 
+            
+            show_debug_message("Curou " + string(_cura) + "! Vida atual: " + string(vida));
+            
+            // DICA: Você pode tocar um som de cura aqui
+            // audio_play_sound(snd_cura, 1, false);
+        }
+        else 
+        {
+            // Opcional: Avisar que a vida já está cheia
+            show_debug_message("Vida já está cheia! Medkit não utilizado.");
+        }
+    }
+}

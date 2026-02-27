@@ -12,11 +12,11 @@ if (instance_exists(obj_player)) {
 if (keyboard_check_pressed(ord("L"))) {
     if (global.luz_acesa == false) {
         global.luz_acesa = true;
-        sprite_index = spr_lanterna_apagada;
+        sprite_index = spr_lanterna_acesa;
         show_debug_message("LIGOU");
     } else {
         global.luz_acesa = false;
-        sprite_index = spr_lanterna_acesa;
+        sprite_index = spr_lanterna_apagada;
         show_debug_message("DESLIGOU");
     }
 }

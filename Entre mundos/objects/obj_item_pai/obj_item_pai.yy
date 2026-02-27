@@ -10,8 +10,8 @@
   "name":"obj_item_pai",
   "overriddenProperties":[],
   "parent":{
-    "name":"Object",
-    "path":"folders/Object.yy",
+    "name":"gpr_itens",
+    "path":"folders/Object/gpr_itens.yy",
   },
   "parentObjectId":null,
   "persistent":false,

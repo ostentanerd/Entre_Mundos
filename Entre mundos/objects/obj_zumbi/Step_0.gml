@@ -9,7 +9,8 @@ if (instance_exists(obj_player) && obj_player.vida <= 0 && hp > 0) {
 }
 
 // 2. LÓGICA DE MORTE DO ZUMBI (Deve vir PRIMEIRO de tudo)
-if (hp <= 0) {
+if (hp <= 0) 
+{
     if (estado != ESTADO_NORMAL.MORTO) {
         estado = ESTADO_NORMAL.MORTO;
         
@@ -23,20 +24,47 @@ if (hp <= 0) {
         var _item_tipo = noone;
 
         // --- DROP DE ITENS ---
+        // --- LÓGICA DE DROP (ORGANIZADA) ---
+        var _item_tipo = noone;
+
+        // 1. Prioridade Máxima: Cartão (Se for o último do spawner)
         if (instance_exists(meu_spawner)) {
             meu_spawner.vivos -= 1; 
-			
-            if (meu_spawner.vivos <= 0) _item_tipo = obj_item_cartao;
-            else if (random(100) < 40) _item_tipo = obj_item_municao;
-        } else {
-            if (random(100) < 30) _item_tipo = obj_item_municao;
+            
+            if (meu_spawner.vivos <= 0) {
+                _item_tipo = obj_item_cartao;
+            }
         }
 
+        // 2. Se não for cartão, tenta o drop comum (Medkit ou Munição)
+        if (_item_tipo == noone) {
+            var _chance = instance_exists(meu_spawner) ? 40 : 30; // Chance de dropar algo
+            
+            if (random(100) < _chance) {
+                // Aqui decidimos a raridade: 15% Medkit, o resto Munição
+                if (random(100) < 15) {
+                    _item_tipo = obj_item_medkit;
+                } else {
+                    _item_tipo = obj_item_municao;
+                }
+            }
+        }
+
+        // 3. Criar o item se ele foi definido
         if (_item_tipo != noone) {
-            var _lay = layer_exists("Instances_1") ? "Instances_1" : layer;
-            var _it = instance_create_layer(x, y, _lay, _item_tipo);
-            _it.vspeed = -4;
-            _it.gravity = 0; // Adicionado gravidade para o item não voar
+            // Tenta achar uma layer válida
+            var _target_layer = layer_exists("Instances_1") ? "Instances_1" : layer;
+            
+            var _it = instance_create_layer(x, y, _target_layer, _item_tipo);
+            _it.vspeed = 0;    // Pulo para cima
+           // _it.hspeed = random_range(-1, 1); // Pulo para o lado aleatório
+            
+            // Se o seu item não tiver gravidade interna, force aqui:
+            if (variable_instance_exists(_it, "gravity")) {
+                _it.gravity = 0;
+            }
+            
+            show_debug_message("Dropou: " + object_get_name(_item_tipo));
         }
 		
 		
@@ -152,19 +180,3 @@ break;
     break;
 }
 
-// --- LÓGICA DE SEPARAÇÃO (Evitar um dentro do outro) ---
-var _vizinho = instance_place(x, y, obj_zumbi); // Procura outro zumbi tocando nele
-
-if (_vizinho != noone) 
-{
-    // Se o outro zumbi estiver à esquerda, este zumbi vai um pouco para a direita
-    // Se estiver à direita, este vai para a esquerda
-    var _direcao_empurrao = sign(x - _vizinho.x);
-    
-    // Se estiverem exatamente no mesmo lugar (x == _vizinho.x), o sign dá 0. 
-    // Forçamos um lado para eles não travarem.
-    if (_direcao_empurrao == 0) _direcao_empurrao = 1; 
-
-    // O 0.5 é a força do empurrão. Se quiser que eles se separem rápido, aumente para 1 ou 2.
-    hsp += _direcao_empurrao * 0.5; 
-}

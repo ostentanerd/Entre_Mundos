@@ -24,6 +24,7 @@ tem_pistola = false; // Começa sem a arma
 vida_max = 5; // O total de vida que ele pode ter
 vida = vida_max; // A vida atual dele
 morto = false;
+medkits = 0; // Começa sem nenhum
 
 
 tem_cartao = false; // Começa sem o cartão
