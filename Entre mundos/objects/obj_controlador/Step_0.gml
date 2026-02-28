@@ -23,4 +23,12 @@ if (criados < quantidade_inimigos) {
         spawn_timer = 180; 
     }
 }
+
+
+
+
 if (aviso_timer > 0) aviso_timer -= 1;
+
+if (aviso_timer > 0) {
+    aviso_timer -= 1;
+}

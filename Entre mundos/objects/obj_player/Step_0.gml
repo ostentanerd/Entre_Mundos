@@ -17,6 +17,10 @@ if (vida <= 0) {
         sprite_index = spr_player_morto;
         image_index = 0;
         image_speed = 1;
+		
+		
+		layer_set_visible("Restart", true);
+	    layer_set_visible("Preto", true);
         
         // Destruir braços e lanterna para não ficarem flutuando sobre o corpo
         if (instance_exists(meus_bracos)) instance_destroy(meus_bracos);

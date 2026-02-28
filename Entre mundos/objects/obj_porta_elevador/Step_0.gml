@@ -35,6 +35,7 @@ if (instance_exists(obj_player))
                 if (instance_exists(obj_controlador)) 
                 {
                     obj_controlador.aviso_timer = 120;
+					
                 }
             }
         }
@@ -47,8 +48,28 @@ if (sprite_index == spr_porta_abrindo && image_index >= image_number - 1)
     image_speed = 0;
     image_index = image_number - 1;
     
-    if (!variable_instance_exists(id, "timer_saida")) timer_saida = 120;
+    if (!variable_instance_exists(id, "timer_saida")) timer_saida = 100;
     timer_saida -= 1;
     
     if (timer_saida <= 0) room_goto_next();
+}
+
+
+
+///// ---------PROMPT "[E]" ------------
+
+var _dist = distance_to_object(obj_player);
+// Se o player estiver perto e a gaveta estiver fechada
+if (_dist < 20 && !aberta) {
+    // Se o prompt ainda não existe, cria ele
+    if (meu_prompt == noone) {
+        meu_prompt = instance_create_layer(x - 20, y - 45, "Instances", obj_prompt_interacao);
+    }
+} 
+else {
+    // Se o player se afastou ou a gaveta abriu, destrói o prompt
+    if (meu_prompt != noone) {
+        instance_destroy(meu_prompt);
+        meu_prompt = noone;
+    }
 }

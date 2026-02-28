@@ -52,3 +52,9 @@ if (sprite_index == spr_mao_pistola_atirando || sprite_index == spr_mao_pistola_
         image_speed = 1; // Para o braço parado não ficar "piscando" ou animando
     }
 }
+
+// No Step do obj_lanterna e obj_player_maos:
+if (instance_exists(obj_player)) {
+    x = obj_player.x;
+    y = obj_player.y;
+}

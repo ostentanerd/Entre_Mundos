@@ -1,9 +1,7 @@
 {
   "$GMObject":"",
   "%Name":"obj_zumbi_caido",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"obj_zumbi_caido",
   "overriddenProperties":[],
@@ -11,7 +9,10 @@
     "name":"grp_inimigo",
     "path":"folders/Object/grp_inimigo.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_zumbi",
+    "path":"objects/obj_zumbi/obj_zumbi.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

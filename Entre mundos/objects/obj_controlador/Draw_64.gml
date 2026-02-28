@@ -137,7 +137,7 @@ if (instance_exists(obj_porta_elevador))
     if (_p.aberta && _p.image_index < 10) 
     {
         // --- CONFIGURAÇÃO DO TEXTO (Importante para iniciantes!) ---
-        draw_set_font(fnt_hud);       // Define a sua fonte
+        draw_set_font(fnt_itens);       // Define a sua fonte
         draw_set_halign(fa_center);   // Centraliza o texto horizontalmente
         draw_set_valign(fa_middle);   // Centraliza o texto verticalmente
         
@@ -146,11 +146,11 @@ if (instance_exists(obj_porta_elevador))
 
         // 3. DESENHA UMA SOMBRA (Para o texto não sumir no cenário claro)
         draw_set_color(c_black);
-        draw_text(_gx + 2, _gy + 2, "ACESSO AUTORIZADO");
+        draw_text(_gx + 2, _gy + 24, "ACESSO AUTORIZADO");
 
         // 4. DESENHA O TEXTO PRINCIPAL EM VERDE LIMA
         draw_set_color(c_lime);
-        draw_text(_gx, _gy, "ACESSO AUTORIZADO");
+        draw_text(_gx + 2, _gy + 24, "ACESSO AUTORIZADO");
 
         // --- RESETAR CONFIGURAÇÕES ---
         // Isso é OBRIGATÓRIO para não estragar os outros desenhos do jogo
@@ -162,6 +162,25 @@ if (instance_exists(obj_porta_elevador))
     }
 }
 
+if (aviso_timer > 0) {
+    draw_set_font(fnt_itens); // Usa a fonte que você já criou
+    draw_set_halign(fa_center);
+    
+    var _x_centro = display_get_gui_width() / 2;
+    var _y_mensagem = 100; // Altura da mensagem na tela
+
+    // Desenha uma sombra preta primeiro (para destacar)
+    draw_set_color(c_dkgray);
+    draw_text(_x_centro + 2, _y_mensagem + 23, "Precida do KayCard");
+
+    // Desenha o texto principal em Vermelho ou Amarelo
+    draw_set_color(c_white); 
+    draw_text(_x_centro + 2, _y_mensagem + 23, "Precida do KayCard");
+    
+    // SEMPRE RESETAR A COR
+    draw_set_color(c_white);
+    draw_set_halign(fa_left);
+}
 
 
 

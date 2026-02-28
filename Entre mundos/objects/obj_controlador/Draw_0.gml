@@ -20,7 +20,7 @@ if (!surface_exists(surf)) {
 surface_set_target(surf);
 
     // Pinta a tela toda de preto
-    draw_clear_alpha(c_black, 0.69); 
+    draw_clear_alpha(c_black, 0.85); 
 
     // Ativa o modo de "furar" o preto
     gpu_set_blendmode(bm_subtract);
@@ -41,11 +41,22 @@ if (global.luz_acesa) {
     // O 'with' faz o código rodar para TODAS as velas da sala ao mesmo tempo
     with (obj_vela) {
         // Criamos um efeito de oscilação (opcional)
-        var _oscilacao = choose(2, 2.5, 1.0); 
+        var _oscilacao = choose(2.5, 3, 1.0); 
         
         // Desenhamos a luz da vela. 
         // Importante: usamos x - _cx para alinhar com a câmera
-        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 15) - _cy, _oscilacao, _oscilacao, 0, c_yellow, 1);
+        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 15) - _cy, _oscilacao, _oscilacao, 0, c_orange, 1);
+    }
+	
+	
+	
+	 with (obj_player) {
+        // Criamos um efeito de oscilação (opcional)
+        var _visao = 2; 
+        
+        // Desenhamos a luz da vela. 
+        // Importante: usamos x - _cx para alinhar com a câmera
+        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 15) - _cy, _visao, _visao, 0, c_orange, 1);
     }
 	
 	

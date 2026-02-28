@@ -20,7 +20,11 @@ if (keyboard_check_pressed(ord("L"))) {
         show_debug_message("DESLIGOU");
     }
 }
-
+// No Step do obj_lanterna e obj_player_maos:
+if (instance_exists(obj_player)) {
+    x = obj_player.x;
+    y = obj_player.y;
+}
 
 
 // Isso vai mostrar no topo da tela se o jogo acha que está acesa ou não

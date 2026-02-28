@@ -1,7 +1,7 @@
 // 1. Lógica da transparência (Piscar)
 // Só pisca se estiver invulnerável E ainda estiver vivo
 if (invulneravel && vida > 0) {
-    image_alpha = ((current_time div 100) % 2 == 0) ? 0.3 : 1.0;
+    image_alpha = ((current_time div 100) % 5 == 0) ? 0.5 : 1.0;
 } else {
     // Se estiver morto ou não estiver invulnerável, o alpha é normal
     image_alpha = 1.0;

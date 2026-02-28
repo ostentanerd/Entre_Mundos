@@ -25,7 +25,7 @@ if (hp <= 0)
 
         // --- DROP DE ITENS ---
         // --- LÓGICA DE DROP (ORGANIZADA) ---
-        var _item_tipo = noone;
+        
 
         // 1. Prioridade Máxima: Cartão (Se for o último do spawner)
         if (instance_exists(meu_spawner)) {
@@ -37,18 +37,23 @@ if (hp <= 0)
         }
 
         // 2. Se não for cartão, tenta o drop comum (Medkit ou Munição)
-        if (_item_tipo == noone) {
-            var _chance = instance_exists(meu_spawner) ? 40 : 30; // Chance de dropar algo
+        if (_item_tipo == noone) 
+		{
+            var _chance = instance_exists(meu_spawner) ? 50 : 40; // Chance de dropar algo
             
-            if (random(100) < _chance) {
+            if (random(100) < _chance)
+			{
                 // Aqui decidimos a raridade: 15% Medkit, o resto Munição
-                if (random(100) < 15) {
+                if (random(100) < 15) 
+				{
                     _item_tipo = obj_item_medkit;
-                } else {
+                } 
+				else 
+				{
                     _item_tipo = obj_item_municao;
                 }
             }
-        }
+         }
 
         // 3. Criar o item se ele foi definido
         if (_item_tipo != noone) {

@@ -31,12 +31,12 @@ if (instance_exists(view_target))
 {
     // 1. Deslocamento suave do olhar (Look-ahead)
     if (!variable_instance_exists(id, "smooth_offset")) smooth_offset = 0;
-    var _target_offset = view_target.face * 90; 
+    var _target_offset = view_target.face * 60; 
     smooth_offset = lerp(smooth_offset, _target_offset, 0.05);
     
     // 2. Cálculo da posição alvo (Corrigi o /0 para /2)
-    var x1 = (view_target.x + smooth_offset) - global.view_width / 2;
-    var y1 = view_target.y - (global.view_height / 2) -40; 
+    var x1 = (view_target.x + smooth_offset) - (global.view_width / 1.8) + 10;
+    var y1 = view_target.y - (global.view_height / 2.3) -55; 
     
     // 3. Limites da Room
     x1 = clamp(x1, 0, room_width - global.view_width);
