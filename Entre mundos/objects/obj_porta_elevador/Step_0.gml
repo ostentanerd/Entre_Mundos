@@ -5,7 +5,7 @@ if (instance_exists(obj_player))
     var _distancia = distance_to_object(obj_player);
 
     // 3. SÓ FUNCIONA se estiver a menos de 45 pixels da porta
-    if (_distancia < 2) 
+    if (_distancia < 40 && global.luz_acesa)
     {
         // 4. Se o jogador apertar a tecla de interagir
         if (keyboard_check_pressed(ord("E"))) 
@@ -48,7 +48,7 @@ if (sprite_index == spr_porta_abrindo && image_index >= image_number - 1)
     image_speed = 0;
     image_index = image_number - 1;
     
-    if (!variable_instance_exists(id, "timer_saida")) timer_saida = 100;
+    if (!variable_instance_exists(id, "timer_saida")) timer_saida = 80;
     timer_saida -= 1;
     
     if (timer_saida <= 0) room_goto_next();
@@ -60,7 +60,8 @@ if (sprite_index == spr_porta_abrindo && image_index >= image_number - 1)
 
 var _dist = distance_to_object(obj_player);
 // Se o player estiver perto e a gaveta estiver fechada
-if (_dist < 20 && !aberta) {
+if (_dist < 20 && !aberta && global.luz_acesa) 
+{
     // Se o prompt ainda não existe, cria ele
     if (meu_prompt == noone) {
         meu_prompt = instance_create_layer(x - 20, y - 45, "Instances", obj_prompt_interacao);

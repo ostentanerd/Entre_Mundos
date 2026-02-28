@@ -102,7 +102,7 @@ var _dist = point_distance(x, y, obj_player.x, obj_player.y);
 
 ///  ------------- SWITCH --------------
 // 5. MÁQUINA DE ESTADOS
-		switch (estado) {
+switch (estado) {
 		   case ESTADO_NORMAL.PARADO:
     sprite_index = spr_zumbi_idle;
     hspeed = 0;
@@ -130,23 +130,33 @@ var _dist = point_distance(x, y, obj_player.x, obj_player.y);
     }
 break;
 
-		   case ESTADO_NORMAL.ANDANDO:
-    sprite_index = spr_zumbi_andando;
+		 case ESTADO_NORMAL.ANDANDO:
+		    sprite_index = spr_zumbi_andando;
     
-    if (instance_exists(obj_player) && obj_player.vida > 0) {
-        // Código normal de seguir o player que já tens...
-        image_xscale = (obj_player.x > x) ? -1 : 1;
-        var _dir = point_direction(x, y, obj_player.x, obj_player.y);
-        hspeed = lengthdir_x(velocidade, _dir);
-    } else {
-        // Se o player morreu, ele mantém a velocidade da patrulha
-        // e se bater numa parede, para.
-        if (place_meeting(x + hspeed, y, obj_chao_normal)) {
-            hspeed = 0;
-            estado = ESTADO_NORMAL.PARADO;
+		    if (instance_exists(obj_player) && obj_player.vida > 0) {
+		        // Código normal de seguir o player que já tens...
+		        image_xscale = (obj_player.x > x) ? -1 : 1;
+		        var _dir = point_direction(x, y, obj_player.x, obj_player.y);
+		        hspeed = lengthdir_x(velocidade, _dir);
+				
+				
+				if (_dist < dist_atacar) { 
+            estado = ESTADO_NORMAL.ATACANDO;
+            sprite_index = spr_zumbi_atacando;
+            image_index = 0; // RESETA AQUI (Apenas uma vez na mudança de estado)
+            image_speed = 1;
+            hspeed = 0;     // Para de andar para atacar
         }
-    }
-break;
+		
+		    } else {
+		        // Se o player morreu, ele mantém a velocidade da patrulha
+		        // e se bater numa parede, para.
+		        if (place_meeting(x + hspeed, y, obj_chao_normal)) {
+		            hspeed = 0;
+		            estado = ESTADO_NORMAL.PARADO;
+		        }
+		    }
+		break;
 
 		   case ESTADO_NORMAL.ATACANDO:
 		    hspeed = 0;
@@ -175,8 +185,8 @@ break;
     hspeed = 0;
     // Se o player chegar muito perto, o zumbi levanta
     if (instance_exists(obj_player)) {
-        var _dist = distance_to_object(obj_player);
-        if (_dist < 50) { // Distância para ele "acordar"
+        var _distn = distance_to_object(obj_player);
+        if (_distn < 50) { // Distância para ele "acordar"
             estado = ESTADO_NORMAL.ANDANDO; 
             image_speed = 1;
             // Aqui podes colocar uma animação dele levantando se tiveres!

@@ -49,14 +49,14 @@ if (global.luz_acesa) {
     }
 	
 	
-	
+	///-------CAMPO DE VISÂO DO PLAYER-----------
 	 with (obj_player) {
         // Criamos um efeito de oscilação (opcional)
         var _visao = 2; 
         
         // Desenhamos a luz da vela. 
         // Importante: usamos x - _cx para alinhar com a câmera
-        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 15) - _cy, _visao, _visao, 0, c_orange, 1);
+        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 15) - _cy, _visao, _visao, 0, c_orange, 0.5);
     }
 	
 	

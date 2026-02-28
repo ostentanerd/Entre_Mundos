@@ -1,0 +1,1 @@
+global.luz_acesa = false; // O jogo começa no escuro

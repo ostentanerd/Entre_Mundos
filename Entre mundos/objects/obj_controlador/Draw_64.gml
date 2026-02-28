@@ -32,6 +32,8 @@ if (obj_player.mao_atual == 1)
     draw_sprite(spr_item_municao, 0, _x - 13, _y + 5);
 }
 
+
+
 // --- 4. DESENHA O NÚMERO DE MUNIÇÃO ---
 draw_set_halign(fa_center); 
 draw_set_valign(fa_middle); 
@@ -55,7 +57,7 @@ draw_set_valign(fa_top);
 // --- EXIBIR CARTÃO NA HUD (LADO DIREITO SUPERIOR) ---
 if (obj_player.tem_cartao) 
 {
-    var _cx = 290; // Posição X que você pediu
+    var _cx = 230; // Posição X que você pediu
     var _cy = 18;  // Posição Y que você pediu
     
     // 1. Desenha a Sprite do Cartão
@@ -112,7 +114,7 @@ if (instance_exists(obj_player)) {
             // O fade_alpha sobe bem devagar
             // 0.005 fará o ecrã levar cerca de 3 a 4 segundos para ficar todo preto
             if (fade_alpha < 1) {
-                fade_alpha += 0.0007; 
+                fade_alpha += 0.002; 
             }
             
             // Desenha o retângulo preto
@@ -130,11 +132,11 @@ if (instance_exists(obj_player)) {
 if (instance_exists(obj_porta_elevador)) 
 {
     // Criamos uma variável curta '_p' para facilitar a escrita
-    var _p = obj_porta_elevador; 
+    var _porta = obj_porta_elevador; 
 
     // 2. Só desenha se a porta estiver aberta E ainda estiver no início da animação (frames 0 a 10)
     // Aumentei para 10 para dar tempo do player ler a mensagem!
-    if (_p.aberta && _p.image_index < 10) 
+    if (_porta.aberta && _p.image_index < 10) 
     {
         // --- CONFIGURAÇÃO DO TEXTO (Importante para iniciantes!) ---
         draw_set_font(fnt_itens);       // Define a sua fonte

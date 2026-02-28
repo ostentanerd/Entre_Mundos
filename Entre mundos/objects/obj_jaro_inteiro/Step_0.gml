@@ -8,7 +8,7 @@ var _tecla_tiro = keyboard_check_pressed(ord("K"));
 var _deu_facada = (_tecla_faca) || (_tecla_tiro && obj_player.municao <= 0);
 
 // 3. Verificação de proximidade e se já não está quebrada
-if (_distancia < 20 && !quebrada) 
+if (_distancia < 5 && !quebrada) 
 {
     // SÓ QUEBRA SE A CONDIÇÃO DE FACADA FOR VERDADEIRA
     if (_deu_facada) 

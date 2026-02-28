@@ -8,6 +8,7 @@ enum ESTADO_NORMAL { PARADO, ANDANDO, ATACANDO, MORTO, CAIDO }
 // 2. DEPOIS: Definimos as variáveis básicas
 hp = irandom_range(5, 8);
 velocidade = 0.5;
+dist_atacar = 25;     // Distância em pixels para ele iniciar o ataque
 dist_perceber = 150;
 flash = 0;
 hspeed = 0; // Velocidade horizontal
