@@ -5,7 +5,7 @@ var _key_knife = keyboard_check_pressed(ord("I"));
 if ((_key_fire || _key_knife) && obj_player.pode_atirar) 
 {
     // Se for tiro (K + Bala + Pistola)
-    if (_key_fire && obj_player.tem_pistola && obj_player.municao > 0) 
+    if (_key_fire && global.tem_pistola && global.municao > 0) 
     {
         sprite_index = spr_mao_pistola_atirando;
         image_index = 0; // Resetar o frame ANTES
@@ -17,7 +17,7 @@ if ((_key_fire || _key_knife) && obj_player.pode_atirar)
         _bala.image_xscale = obj_player.face;
 
         obj_player.brilho_tiro = 1; 
-        obj_player.municao -= 1;
+        global.municao -= 1;
         obj_player.pode_atirar = false;
         obj_player.alarm[0] = obj_player.delay_tiro;
         

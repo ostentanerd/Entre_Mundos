@@ -12,7 +12,7 @@ if (instance_exists(other))
     // ADICIONE "other." antes de pode_tomar_dano e das outras variáveis do player
     if (other.pode_tomar_dano) 
     {
-        other.vida -= 1;
+        global.vida -= 1;
         other.pode_tomar_dano = false;
         other.invulneravel = true;
         other.flash_player = 1; // Ativa o brilho vermelho no Draw do player

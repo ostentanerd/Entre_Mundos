@@ -1,34 +1,39 @@
-// --- CONFIGURAÇÃO DE POSIÇÃO ---
-var _x_base = 10;   // Onde o ícone começa
-var _y_base = 125;  // Altura geral da HUD da lanterna
-var _espaco_icone = 7; // Espaço que o ícone ocupa antes da barra
+// --- 1. RESET DE INTERFACE PARA ESTA BARRA ---
+// Isso garante que o código abaixo ignore qualquer "zoom" vindo de outros objetos
+matrix_set(matrix_world, matrix_build_identity());
 
-// 1. DESENHA O ÍCONE DA LANTERNA
-// Usamos draw_sprite_ext para diminuir o tamanho se o seu sprite for muito grande
-draw_sprite_ext(spr_lanterna_hud, 0, _x_base, _y_base + 5, 0.5, 0.5, 0, c_white, 1);
+var _w_tela = window_get_width();
+var _h_tela = window_get_height();
 
-// --- CONFIGURAÇÃO DA BARRA (Ajustada para ficar ao lado do ícone) ---
-var _x_barra = _x_base + _espaco_icone;
-var _y_barra = _y_base + 1;
-var _largura_max = 50;
-var _altura_barra = 5;
+// Define o tamanho da GUI para o tamanho real da janela (Nitidez máxima)
+display_set_gui_size(_w_tela, _h_tela);
 
-// 2. FUNDO DA BARRA (PRETO)
+// --- 2. CONFIGURAÇÃO DE POSIÇÃO (Ajuste esses valores se quiser mover) ---
+// Em vez de 285 fixo, vamos usar 20% da largura da tela
+var _x_base = _w_tela * 0.15; 
+var _y_base = _h_tela -690; // Fica a 80 pixels do fundo, não importa a fase
+
+// --- 3. DESENHA O ÍCONE (Escala fixa para não crescer) ---
+var _escala_icone = 1.5; 
+draw_sprite_ext(spr_lanterna_hud, 0, _x_base, _y_base + 10, _escala_icone, _escala_icone, 0, c_white, 1);
+
+// --- 4. CONFIGURAÇÃO DA BARRA ---
+var _x_barra = _x_base + 40;
+var _y_barra = _y_base; 
+var _largura_max = 200; // Tamanho fixo em pixels reais
+var _altura_barra = 15;
+
+// Fundo Preto
 draw_set_color(c_black);
-draw_rectangle(_x_barra - 1, _y_barra - 1, _x_barra + _largura_max + 1, _y_barra + _altura_barra + 1, false);
+draw_rectangle(_x_barra - 2, _y_barra - 2, _x_barra + _largura_max + 2, _y_barra + _altura_barra + 2, false);
 
-// 3. LÓGICA DE COR E CARGA
-var _cor_bateria = c_lime;
-if (carga_atual < 30) _cor_bateria = c_red;
-
-// Cálculo para a barra não passar do tamanho máximo
-// Fórmula: (Carga Atual / Carga Máxima) * Largura Total
+// Lógica de Carga
 var _porcentagem = (carga_atual / carga_maxima);
-var _largura_preenchida = _porcentagem * _largura_max;
+var _cor_bateria = (_porcentagem < 0.3) ? c_red : c_lime;
 
-// 4. DESENHA A CARGA
+// Desenha a Carga
 draw_set_color(_cor_bateria);
-draw_rectangle(_x_barra, _y_barra, _x_barra + _largura_preenchida, _y_barra + _altura_barra, false);
+draw_rectangle(_x_barra, _y_barra, _x_barra + (_largura_max * _porcentagem), _y_barra + _altura_barra, false);
 
-// Resetar para branco
+// Reset de cor
 draw_set_color(c_white);

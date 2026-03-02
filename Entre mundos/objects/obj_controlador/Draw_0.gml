@@ -41,11 +41,22 @@ if (global.luz_acesa) {
     // O 'with' faz o código rodar para TODAS as velas da sala ao mesmo tempo
     with (obj_vela) {
         // Criamos um efeito de oscilação (opcional)
-        var _oscilacao = choose(2.5, 3, 1.0); 
+        var _oscilacao = irandom_range(2.5,3.8); 
         
         // Desenhamos a luz da vela. 
         // Importante: usamos x - _cx para alinhar com a câmera
-        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 15) - _cy, _oscilacao, _oscilacao, 0, c_orange, 1);
+        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 8) - _cy, _oscilacao, _oscilacao, 0, c_yellow, 0.8);
+    }
+	
+	// --- LUZ DO COMPUTADOR (ADICIONADO) ---
+    // O 'with' faz o código rodar para TODAS as velas da sala ao mesmo tempo
+    with (obj_computador_save) {
+        // Criamos um efeito de oscilação (opcional)
+        var _oscilacao = choose(1, 1.25); 
+        
+        // Desenhamos a luz da vela. 
+        // Importante: usamos x - _cx para alinhar com a câmera
+        draw_sprite_ext(spr_luz_suave, 0, (x - 15)- _cx, (y + 5) - _cy, _oscilacao, _oscilacao, 0, c_aqua, 0.6);
     }
 	
 	

@@ -1,4 +1,4 @@
-// Movimentação básica
+ // Movimentação básica
 hsp       = 0;
 vsp       = 0;
 grv       = 0.3;
@@ -14,17 +14,31 @@ surf             = -1;
 
 // Inventario e Mãos
 mao_atual    = 0; 
-tem_cartao   = false;
+
 pode_atirar  = true;
 delay_tiro   = 5;
-municao      = 0;
 brilho_tiro = 0;
-tem_pistola = false; // Começa sem a arma
+
+
 
 vida_max = 5; // O total de vida que ele pode ter
-vida = vida_max; // A vida atual dele
+global.vida = vida_max; // A vida atual dele
 morto = false;
-medkits = 0; // Começa sem nenhum
+ // Começa sem nenhum
+
+
+// No final do Create do seu obj_player
+// Só teleporta se o checkpoint for nesta sala
+
+// Só checa se a variável já foi definida pelo controlador
+if (variable_global_exists("checkpoint_room")) 
+{
+    if (global.checkpoint_room == room) 
+    {
+        x = global.checkpoint_x;
+        y = global.checkpoint_y;
+    }
+}
 
 
 tem_cartao = false; // Começa sem o cartão
@@ -42,9 +56,14 @@ global.luz_acesa = false; // A lanterna começa desligada
 // Criando o objeto das mãos
 meus_bracos = instance_create_layer(x, y, "Instances", obj_player_maos);
 
-meu_lanterna = instance_create_layer(x, y, "Lanterna", obj_lanterna);
+global.meu_lanterna = instance_create_layer(x, y, "Lanterna", obj_lanterna);
 
-
+// Ao nascer, verifica se já pegou a pistola em fases anteriores
+if (global.tem_pistola == true) {
+    mao_atual = 1; // Já começa segurando a arma
+} else {
+    mao_atual = 0; // Começa de mão vazia
+}
 
 ////  -----------SANGUE---------
 
@@ -65,4 +84,6 @@ part_type_speed(global.part_sangue, 1, 2, -0.07, 0);   // Velocidade de saída
 part_type_direction(global.part_sangue, 0, 360, 0, 0);// Direção (para todos os lados)
 part_type_gravity(global.part_sangue, 0.5, 270);      // Gravidade (270 é para baixo)
 part_type_life(global.part_sangue, 5, 10);           // Quanto tempo dura (frames)
+
+
 

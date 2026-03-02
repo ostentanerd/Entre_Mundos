@@ -2,7 +2,7 @@ event_inherited();
 
 
 // 1. SE O PLAYER MORREU (E o zumbi está vivo), ele entra em modo patrulha
-if (instance_exists(obj_player) && obj_player.vida <= 0 && hp > 0) { 
+if (instance_exists(obj_player) && global.vida <= 0 && hp > 0) { 
     if (estado != ESTADO_NORMAL.PARADO && estado != ESTADO_NORMAL.ANDANDO) {
         estado = ESTADO_NORMAL.PARADO;
     }
@@ -87,7 +87,7 @@ if (hp <= 0)
 }
 
 // 3. SE O PLAYER MORREU (E o zumbi está vivo), O ZUMBI PARA
-if (obj_player.vida <= 0) {
+if (global.vida <= 0) {
     hspeed = 0;
     estado = ESTADO_NORMAL.PARADO;
     sprite_index = spr_zumbi_idle;
@@ -108,7 +108,7 @@ switch (estado) {
     hspeed = 0;
 
     // Se o player estiver vivo e perto, persegue
-    if (instance_exists(obj_player) && obj_player.vida > 0) {
+    if (instance_exists(obj_player) && global.vida > 0) {
         if (_dist < dist_perceber) {
             estado = ESTADO_NORMAL.ANDANDO;
         }
@@ -133,7 +133,7 @@ break;
 		 case ESTADO_NORMAL.ANDANDO:
 		    sprite_index = spr_zumbi_andando;
     
-		    if (instance_exists(obj_player) && obj_player.vida > 0) {
+		    if (instance_exists(obj_player) && global.vida > 0) {
 		        // Código normal de seguir o player que já tens...
 		        image_xscale = (obj_player.x > x) ? -1 : 1;
 		        var _dir = point_direction(x, y, obj_player.x, obj_player.y);
@@ -171,8 +171,8 @@ break;
     
 		    if (image_index >= image_number - 1) {
 		        // SÓ aplica dano se o zumbi estiver VIVO (hp > 0)
-		        if (hp > 0 && _dist < dist_atacar + 10 && obj_player.vida > 0 && obj_player.invulneravel == false) {
-		            obj_player.vida -= 1;
+		        if (hp > 0 && _dist < dist_atacar + 10 && global.vida > 0 && obj_player.invulneravel == false) {
+		            global.vida -= 1;
 		            obj_player.invulneravel = true;
 		            obj_player.alarm[1] = 60;
 		            // ... knockback

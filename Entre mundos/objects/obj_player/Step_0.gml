@@ -1,251 +1,179 @@
 /// --- INPUTS ---
-var _key_left      = keyboard_check(ord("A"))  ||  keyboard_check(vk_left);
-var _key_right     = keyboard_check(ord("D"))  ||  keyboard_check(vk_right);
-var _key_up        = keyboard_check(ord("W"))  ||  keyboard_check(vk_up);
-var _key_down      = keyboard_check(ord("S"))  ||  keyboard_check(vk_down);
-var _key_jump      = keyboard_check_pressed(ord("J"));
-var _key_interact  = keyboard_check_pressed(ord("E"));
-var _key_flashlight = keyboard_check_pressed(ord("L"));
-//var _mouse_click   = mouse_check_button(mb_left); // Click para animação de tiro
+// Adicionamos a checagem da global.pode_mover aqui nos inputs
+var _pode = global.pode_mover; 
+
+var _key_left      = _pode && (keyboard_check(ord("A"))  ||  keyboard_check(vk_left));
+var _key_right     = _pode && (keyboard_check(ord("D"))  ||  keyboard_check(vk_right));
+var _key_up        = _pode && (keyboard_check(ord("W"))  ||  keyboard_check(vk_up));
+var _key_down      = _pode && (keyboard_check(ord("S"))  ||  keyboard_check(vk_down));
+var _key_jump      = _pode && keyboard_check_pressed(ord("J"));
+var _key_interact  = _pode && keyboard_check_pressed(ord("E"));
+var _key_flashlight = _pode && keyboard_check_pressed(ord("L"));
+var _key_heal      = _pode && keyboard_check_pressed(ord("U"));
 
 
+if (global.cutscene == true) {
+    hvel = 0;
+    vvel = 0;
+    image_speed = 0; // Trava o frame atual
+    image_index = 0; // Opcional: força o frame parado
+    exit; 
+} else {
+    // Se a cutscene acabou e ele ainda está parado, devolve a animação
+    if (image_speed == 0) image_speed = 1; 
+}
 
 
-// 1. CHECAGEM DE MORTE (Coloque logo no início)
-if (vida <= 0) {
-    if (sprite_index != spr_player_morto) { // Substitua pelo nome do seu sprite de morte
+// 1. CHECAGEM DE MORTE
+if (global.vida <= 0) {
+    if (sprite_index != spr_player_morto) { 
         sprite_index = spr_player_morto;
         image_index = 0;
         image_speed = 1;
-		
-		
-		layer_set_visible("Restart", true);
-	    layer_set_visible("Preto", true);
         
-        // Destruir braços e lanterna para não ficarem flutuando sobre o corpo
+        layer_set_visible("Restart", true);
+        layer_set_visible("Preto", true);
+        
         if (instance_exists(meus_bracos)) instance_destroy(meus_bracos);
-        if (instance_exists(meu_lanterna)) instance_destroy(meu_lanterna);
+        if (instance_exists(global.meu_lanterna)) instance_destroy(global.meu_lanterna);
         
-        // Ativa o alarme para reiniciar (vimos antes)
-        alarm[2] = 120;
-		
-		mask_index = -1; // <--- ADICIONE ISSO!
-    
-    // Isso remove a máscara de colisão. 
-    // O player vira um "fantasma": o zumbi não consegue mais tocar nele.
-    
-    exit;
-
+        alarm[2] = 150;
+        mask_index = -1; 
+        exit;
     }
     
-    // Trava no último frame da animação de morte
-    if (image_index >= image_number - 1) {
-        image_speed = 0;
-    }
+    if (image_index >= image_number - 1) image_speed = 0;
     
-    // Aplica gravidade para ele cair se morrer no ar
+    // Gravidade para o corpo morto
     if (!place_meeting(x, y + 1, obj_chao_normal)) {
         vsp += 0.3;
-        // Colisão vertical simples para o corpo não atravessar o chão
         if (place_meeting(x, y + vsp, obj_chao_normal)) {
             while (!place_meeting(x, y + sign(vsp), obj_chao_normal)) y += sign(vsp);
             vsp = 0;
         }
         y += vsp;
     }
-
-    exit; // PARA TUDO AQUI. O código abaixo não será lido se estiver morto.
+    exit; 
 }
 
+// --- TRAVA DE MOVIMENTO (Caso global.pode_mover seja falso) ---
+if (!global.pode_mover) {
+    hsp = 0;
+    vsp += 0.3; // Mantém gravidade para não flutuar
+    sprite_index = spr_player_idle;
+    // O código de colisão abaixo ainda vai rodar para ele não cair pelo chão
+}
 
-
-
-if (brilho_tiro > 0) brilho_tiro -= 0.15; // Velocidade do clarão
+if (brilho_tiro > 0) brilho_tiro -= 0.15; 
 
 //  ---- LÓGICA DA ESCADAS ----
-if (place_meeting(x, y, obj_escada))
-{
+if (place_meeting(x, y, obj_escada)) {
     if (_key_up || _key_down) no_escada = true;
-}
-else
-{
-    no_escada  = false;
+} else {
+    no_escada = false;
 }
 
-if (no_escada)
-{
-    vsp        = (_key_down - _key_up) * vel_escada;
-    hsp        = 0;
-    grv        = 0;
-}
-else
-{
-    grv        = 0.3;
-    var _move  = _key_right - _key_left;
-    hsp        = _move * walksp;
-    vsp       += grv;
+if (no_escada) {
+    vsp = (_key_down - _key_up) * vel_escada;
+    hsp = 0;
+    grv = 0;
+} else {
+    grv = 0.3;
+    var _move = _key_right - _key_left;
+    hsp = _move * walksp;
+    vsp += grv;
     if (_move != 0) face = _move;
     
     if (place_meeting(x, y + 1, obj_chao_normal) && _key_jump) vsp = -jumpsp;
 }
 
-
 //  --- COLISÕES ---
-// Colisão Horizontal
-if (place_meeting(x + hsp, y, obj_chao_normal))
-{
-    while (!place_meeting(x + sign(hsp), y, obj_chao_normal)) 
-    {
-        x += sign(hsp);
-    }
+if (place_meeting(x + hsp, y, obj_chao_normal)) {
+    while (!place_meeting(x + sign(hsp), y, obj_chao_normal)) x += sign(hsp);
     hsp = 0;
 }
 x += hsp;
 
-// Colisão Vertical
-if (place_meeting(x, y + vsp, obj_chao_normal))
-{
-    while (!place_meeting(x, y + sign(vsp), obj_chao_normal)) 
-    {
-        y += sign(vsp);
-    }
+if (place_meeting(x, y + vsp, obj_chao_normal)) {
+    while (!place_meeting(x, y + sign(vsp), obj_chao_normal)) y += sign(vsp);
     vsp = 0;
 }
 y += vsp;
 
-
-// ---- INTERAGIR (PEGAR ITENS)  ----
-if (_key_interact) 
-{
-    // Procuramos o item exatamente onde o player está ou com uma pequena margem
+// ---- INTERAGIR (PEGAR ITENS) ----
+if (_key_interact) {
     var _item = instance_place(x, y, obj_item_pai);
-    
-    if (_item != noone)
-    {
-        if (_item.tipo == "arma")
-        {
-			tem_pistola = true; // <--- AGORA ELE TEM A ARMA
-			
+    if (_item != noone) {
+        if (_item.tipo == "arma") {
+            global.tem_pistola = true; 
             mao_atual = 1;
-            municao += 10;
+            global.municao += 10;
         }
-        // Verifique esta linha abaixo:
-        else if (_item.tipo == "municao") 
-        {
-            municao += _item.quantidade;
+        else if (_item.tipo == "municao") {
+            global.municao += _item.quantidade;
         }
-		// --- ADICIONE ESTA PARTE PARA O CARTÃO ---
-        else if (_item.tipo == "cartao") 
-        {
-            tem_cartao = true; 
-            // Você pode adicionar uma mensagem no console para testar:
-            show_debug_message("Pegou o Cartão Verde!");
+        else if (_item.tipo == "cartao") {
+            global.tem_cartao = true; 
         }
-        
-     // --- ADICIONE ESTA PARTE PARA O MEDKIT ---
-        else if (_item.tipo == "medkit") 
-        {
-            medkits += 1; 
-            show_debug_message("Pegou um Medkit!");
+        else if (_item.tipo == "medkits") {
+            global.medkits += 1; 
         }
-        
         instance_destroy(_item);
     }
 }
 
-
-
-
-
-// --- ATUALIZAR ANIMAÇÕES DO CORPO (obj_player) ---
+// --- ATUALIZAR ANIMAÇÕES ---
 image_xscale = face; 
-
-if (!place_meeting(x, y + 1, obj_chao_normal)) 
-{
-    // Se quiser um sprite de pulo, coloque aqui. Se não, deixe o de idle ou andando.
-    // sprite_index = spr_player_pulo; 
-} 
-else 
-{
+if (place_meeting(x, y + 1, obj_chao_normal)) {
     if (hsp != 0) sprite_index = spr_player_andando;
     else sprite_index = spr_player_idle;
 }
 
-
-// --- ATUALIZAR BRAÇOS E MÃOS ---
-if (instance_exists(meus_bracos))
-{
+// --- BRAÇOS E MÃOS ---
+if (instance_exists(meus_bracos)) {
     meus_bracos.x = x;
     meus_bracos.y = y;
     meus_bracos.image_xscale = face;
     
-    // Lista de sprites que NÃO devem ser interrompidos (tiro e facada)
     var _animando = (meus_bracos.sprite_index == spr_mao_pistola_atirando || meus_bracos.sprite_index == spr_mao_pistola_facada);
-
-    if (!_animando) 
-    {
-        switch (mao_atual)
-        {
+    if (!_animando) {
+        switch (mao_atual) {
             case 0: meus_bracos.sprite_index = spr_mao; break;
             case 1: 
-			if (tem_pistola) meus_bracos.sprite_index = spr_mao_pistola;
-			else meus_bracos.sprite_index = spr_mao; // Se não tem a arma, mostra a mão vazia
-			break;
+                if (global.tem_pistola) meus_bracos.sprite_index = spr_mao_pistola;
+                else meus_bracos.sprite_index = spr_mao; 
+            break;
         }
     }
 }
 
-// --- LANTERNA ---
-if (instance_exists(meu_lanterna)) 
-{
-    meu_lanterna.x = x;
-    meu_lanterna.y = y - 11;
-    // Opcional: Descomente abaixo se quiser que a luz siga o lado que o player olha
-    // meu_lanterna.image_xscale = face; 
+
+
+
+if (window_has_focus()) {
+    var _w = window_get_width();
+    var _h = window_get_height();
+    if (display_get_gui_width() != _w || display_get_gui_height() != _h) {
+        display_set_gui_size(_w, _h);
+    }
 }
 
+// --- LANTERNA ---
 
 
-
+// --- INVULNERABILIDADE ---
 if (!pode_tomar_dano) {
-    // Faz o sprite ficar meio transparente e voltar rapidamente
     image_alpha = sin(current_time * 0.1); 
 } else {
     image_alpha = 1;
 }
 
-
-
-
-
-var _key_heal = keyboard_check_pressed(ord("U"));
-
-if (_key_heal) 
-{
-    // 1. Verificamos se tem medkit
-    if (medkits > 0) 
-    {
-        // 2. Verificamos se ele REALMENTE precisa de cura (vida menor que 10)
-        // Substitua o '10' pela sua variável de vida máxima se você tiver uma
-        if (vida < 5) 
-        {
-            medkits -= 1; // Gasta o item
-            
-            var _cura = irandom_range(2, 5); // Sorteia a cura entre 2 e 5
-            vida += _cura; // Aplica a cura
-            
-            // Garante que não passe do limite máximo
-            if (vida > 5) vida = 5; 
-            
-            show_debug_message("Curou " + string(_cura) + "! Vida atual: " + string(vida));
-            
-            // DICA: Você pode tocar um som de cura aqui
-            // audio_play_sound(snd_cura, 1, false);
-        }
-        else 
-        {
-            // Opcional: Avisar que a vida já está cheia
-            show_debug_message("Vida já está cheia! Medkit não utilizado.");
-        }
+// --- CURA ---
+if (_key_heal) {
+    if (global.medkits > 0 && global.vida < 5) {
+        global.medkits -= 1;
+        var _cura = irandom_range(2, 5);
+        global.vida += _cura;
+        if (global.vida > 5) global.vida = 5; 
     }
 }

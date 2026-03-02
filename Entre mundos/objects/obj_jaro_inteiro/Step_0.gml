@@ -5,7 +5,7 @@ var _tecla_tiro = keyboard_check_pressed(ord("K"));
 
 // 2. Lógica para saber se o player REALMENTE deu uma facada
 // Ele dá facada se: Apertar I OU (Apertar K e não ter munição)
-var _deu_facada = (_tecla_faca) || (_tecla_tiro && obj_player.municao <= 0);
+var _deu_facada = (_tecla_faca) || (_tecla_tiro && global.municao <= 0);
 
 // 3. Verificação de proximidade e se já não está quebrada
 if (_distancia < 5 && !quebrada) 
@@ -27,7 +27,7 @@ if (_distancia < 5 && !quebrada)
         // --- CRIAR O ITEM ---
         if (_item_tipo != noone) 
         {
-            instance_create_layer(x - 15, y - 16, "Velas", _item_tipo);
+            instance_create_layer(x - 15, y - 10, "Velas", _item_tipo);
         }
         
        

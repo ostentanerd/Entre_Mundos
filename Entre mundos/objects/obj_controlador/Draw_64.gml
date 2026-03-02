@@ -1,10 +1,22 @@
+// Pega o tamanho real da janela para o texto ficar nítido
+var _largura = window_get_width();
+var _altura = window_get_height();
+display_set_gui_size(_largura, _altura);
+
+// --- INÍCIO DA ESCALA DA HUD ---
+// Isso "dá um zoom" em tudo que vem abaixo
+var _m = matrix_build(0, 0, 0, 0, 0, 0, global.hud_escala, global.hud_escala, 1);
+matrix_set(matrix_world, _m);
+
+
+
 if (!instance_exists(obj_player)) exit;
 
 var _x = 37;  
 var _y = 28; 
 
 // --- 1. DESENHA A VIDA (Corte da barra verde) ---
-var _vida_atual = clamp(obj_player.vida, 0, obj_player.vida_max);
+var _vida_atual = clamp(global.vida, 0, obj_player.vida_max);
 var _hp_porcentagem = _vida_atual / obj_player.vida_max;
 var _w = sprite_get_width(spr_hud_vida);
 var _h = sprite_get_height(spr_hud_vida);
@@ -39,7 +51,7 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_middle); 
 draw_set_font(fnt_hud);     
 
-var _municao_texto = string(obj_player.municao);
+var _municao_texto = string(global.municao);
 var _txt_x = _x + 5; // Posição que definimos antes
 var _txt_y = _y + 3;
 
@@ -54,35 +66,37 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
 
-// --- EXIBIR CARTÃO NA HUD (LADO DIREITO SUPERIOR) ---
-if (obj_player.tem_cartao) 
+// --- EXIBIR CARTÃO NA HUD (LADO DIREITO SUPERIOR DINÂMICO) ---
+if (global.tem_cartao) 
 {
-    var _cx = 230; // Posição X que você pediu
-    var _cy = 18;  // Posição Y que você pediu
+    // Calculamos a largura da GUI dividida pela escala para saber onde é a "ponta direita"
+    var _gui_w = display_get_gui_width() / global.hud_escala;
+    
+    // Posição X: Largura Total - 50 pixels de margem
+    var _cx = _gui_w - 50; 
+    var _cy = 18;  // Mantemos o Y no topo
     
     // 1. Desenha a Sprite do Cartão
-    // O 'subimg' 0 é o primeiro frame. 
-    // Se a sprite estiver centralizada, o texto deve ser deslocado um pouco.
     draw_sprite_ext(spr_hud_cartao, 0, _cx, _cy, 1, 1, 0, c_white, 1);
     
     // 2. Configura o Texto
     draw_set_font(fnt_itens);
-    draw_set_halign(fa_left);   // Alinha o texto à esquerda do ponto inicial
-    draw_set_valign(fa_middle); // Alinha o texto pelo meio da altura
+    draw_set_halign(fa_right);  // Mudamos para RIGHT para o texto crescer para a ESQUERDA da posição
+    draw_set_valign(fa_middle); 
     
-    // 3. Desenha o Nome "Cartão Verde" ao lado da sprite
-    // Somamos +20 no X para o texto não ficar em cima do desenho
+    // 3. Desenha o Nome "KayCard" (Ajustado para o novo X)
+    // Usamos _cx - 10 para o texto ficar logo atrás do ícone do cartão
     draw_set_color(c_black);
-    draw_text(_cx - 21, _cy + 17, "KayCard"); // Sombra
+    draw_text(_cx - 9, _cy + 1, "KayCard"); // Sombra
     
     draw_set_color(c_white); 
-    draw_text(_cx - 20, _cy + 16, "KayCard"); // Texto principal
+    draw_text(_cx - 10, _cy, "KayCard"); // Texto principal
 }
 
 
-
 // Certifique-se de que o player existe
-if (instance_exists(obj_player)) {
+if (instance_exists(obj_player)) 
+{
     
     // --- 1. RESET DE ESTILO (Isso impede que o texto mude de tamanho ou lugar) ---
     draw_set_font(fnt_hud);      // Certifique-se de ter criado essa fonte (Passo anterior)
@@ -91,7 +105,7 @@ if (instance_exists(obj_player)) {
     
     // --- 2. LÓGICA DE TRANSPARÊNCIA ---
     // Ajustei para 5, que é o seu HP máximo que definimos antes
-    var _alpha_hud = (obj_player.vida < 5) ? 1 : 0.3;
+    var _alpha_hud = (global.vida < 5) ? 1 : 0.3;
     
     // --- 3. COORDENADAS FIXAS ---
     var _posX = 13;
@@ -102,66 +116,10 @@ if (instance_exists(obj_player)) {
     
     // Desenha o Texto (Ajustado para ficar ao lado do ícone: _posX + 15)
     // Se o texto estiver muito alto ou baixo, mude o _posY + 2
-    draw_text_color(_posX + 8, _posY - 6, "x" + string(obj_player.medkits), c_white, c_white, c_white, c_white, _alpha_hud);
+    draw_text_color(_posX + 8, _posY - 6, "x" + string(global.medkits), c_white, c_white, c_white, c_white, _alpha_hud);
 	
 	
-	if (instance_exists(obj_porta_elevador)) {
-        var _p = obj_porta_elevador;
-        
-        // Se a porta começou a abrir
-        if (_p.sprite_index == spr_porta_abrindo) {
-            
-            // O fade_alpha sobe bem devagar
-            // 0.005 fará o ecrã levar cerca de 3 a 4 segundos para ficar todo preto
-            if (fade_alpha < 1) {
-                fade_alpha += 0.002; 
-            }
-            
-            // Desenha o retângulo preto
-            draw_set_alpha(fade_alpha);
-            draw_set_color(c_black);
-            draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);
-            
-            // RESET (Obrigatório)
-            draw_set_alpha(1);
-            draw_set_color(c_white);
-        }
-		
-		// --- MENSAGEM DE ACESSO AUTORIZADO ---
-// 1. Verificamos se a porta existe na fase
-if (instance_exists(obj_porta_elevador)) 
-{
-    // Criamos uma variável curta '_p' para facilitar a escrita
-    var _porta = obj_porta_elevador; 
-
-    // 2. Só desenha se a porta estiver aberta E ainda estiver no início da animação (frames 0 a 10)
-    // Aumentei para 10 para dar tempo do player ler a mensagem!
-    if (_porta.aberta && _p.image_index < 10) 
-    {
-        // --- CONFIGURAÇÃO DO TEXTO (Importante para iniciantes!) ---
-        draw_set_font(fnt_itens);       // Define a sua fonte
-        draw_set_halign(fa_center);   // Centraliza o texto horizontalmente
-        draw_set_valign(fa_middle);   // Centraliza o texto verticalmente
-        
-        var _gx = display_get_gui_width() / 2;  // Meio da tela (X)
-        var _gy = display_get_gui_height() - 40; // Perto do rodapé (Y)
-
-        // 3. DESENHA UMA SOMBRA (Para o texto não sumir no cenário claro)
-        draw_set_color(c_black);
-        draw_text(_gx + 2, _gy + 24, "ACESSO AUTORIZADO");
-
-        // 4. DESENHA O TEXTO PRINCIPAL EM VERDE LIMA
-        draw_set_color(c_lime);
-        draw_text(_gx + 2, _gy + 24, "ACESSO AUTORIZADO");
-
-        // --- RESETAR CONFIGURAÇÕES ---
-        // Isso é OBRIGATÓRIO para não estragar os outros desenhos do jogo
-        draw_set_color(c_white);
-        draw_set_halign(fa_left); // Volta o alinhamento para a esquerda
-        draw_set_valign(fa_top);  // Volta o alinhamento para o topo
-    }
-    }
-    }
+	
 }
 
 if (aviso_timer > 0) {
@@ -169,25 +127,45 @@ if (aviso_timer > 0) {
     draw_set_halign(fa_center);
     
     var _x_centro = display_get_gui_width() / 2;
-    var _y_mensagem = 100; // Altura da mensagem na tela
+    var _y_mensagem =150; // Altura da mensagem na tela
 
     // Desenha uma sombra preta primeiro (para destacar)
     draw_set_color(c_dkgray);
-    draw_text(_x_centro + 2, _y_mensagem + 23, "Precida do KayCard");
+    draw_text(_x_centro + 2, _y_mensagem -20, "Precida do KayCard");
 
     // Desenha o texto principal em Vermelho ou Amarelo
     draw_set_color(c_white); 
-    draw_text(_x_centro + 2, _y_mensagem + 23, "Precida do KayCard");
+    draw_text(_x_centro + 2, _y_mensagem -20, "Precida do KayCard");
     
     // SEMPRE RESETAR A COR
     draw_set_color(c_white);
     draw_set_halign(fa_left);
 }
 
+if (texto_titulo_timer > 0) {
+    draw_set_font(fnt_missao); 
+    draw_set_halign(fa_center);
+    
+    // Efeito de transparência para o texto sumir suavemente no final
+    var _alpha = 1;
+    if (texto_titulo_timer < 60) {
+        _alpha = texto_titulo_timer / 60; // Faz o fade-out no último segundo
+    }
+    
+    draw_set_alpha(_alpha);
+    draw_set_color(c_white);
+    draw_text(display_get_gui_width() / 2, 20, "TERRA-2149: ZUMBI");
+	
+    
+    // Sempre resete o alpha e a cor para não bugar o resto da HUD
+    draw_set_alpha(1);
+    draw_set_color(c_white);
+}
 
 
-
-
+var _largura = window_get_width();
+var _altura = window_get_height();
+display_set_gui_size(_largura, _altura);
 
 
 
@@ -203,3 +181,15 @@ draw_set_valign(fa_top);
 
 
 
+
+
+
+
+
+
+
+
+
+// --- FIM DA ESCALA DA HUD ---
+// Reseta a escala para não afetar outras coisas (como o mouse ou filtros)
+matrix_set(matrix_world, matrix_build_identity());

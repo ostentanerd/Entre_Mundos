@@ -15,7 +15,7 @@ if (instance_exists(other)) {
 	part_particles_create(global.part_sistema, other.x, other.y - irandom_range(-15, 15), global.part_sangue, 10);
    // --- EXPLOSÃO DE SANGUE ---
     // Argumentos: Sistema, X, Y, Tipo de Partícula, Quantidade
-    part_particles_create(global.part_sistema, other.x, other.y - 10, global.part_sangue, 15);
+    //part_particles_create(global.part_sistema, other.x, other.y - 10, global.part_sangue, 15);
 
     instance_destroy();
 }

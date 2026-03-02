@@ -1,48 +1,39 @@
-// 1. Checar se o player existe para não dar erro de jogo fechando
+// 1. Checar se o player existe para não dar erro
 if (instance_exists(obj_player)) 
 {
-    // 2. Medir a distância entre a porta e o player
     var _distancia = distance_to_object(obj_player);
 
-    // 3. SÓ FUNCIONA se estiver a menos de 45 pixels da porta
-    if (_distancia < 40 && global.luz_acesa)
+    // 3. SÓ FUNCIONA se estiver a menos de 40 pixels e luz acesa
+    if (_distancia < 10 && global.luz_acesa)
     {
-        // 4. Se o jogador apertar a tecla de interagir
         if (keyboard_check_pressed(ord("E"))) 
         {
-            // 5. CHECAGEM DO CARTÃO
-            if (obj_player.tem_cartao == true) 
+            if (global.tem_cartao == true) 
             {
-                // SÓ ENTRA AQUI SE TIVER O CARTÃO E ESTIVER PERTO
                 if (aberta == false) 
                 {
                     aberta = true;
+                    global.tem_cartao = false; 
                     
-                    // FAZ O CARTÃO SUMIR DO PLAYER
-                    obj_player.tem_cartao = false; 
-                    
-                    // INICIA A ANIMAÇÃO LENTA
                     sprite_index = spr_porta_abrindo;
                     image_index = 0;
-                    image_speed = 0.15; 
+                    image_speed = 0.35; 
                     
                     show_debug_message("Porta aberta com sucesso!");
                 }
             } 
             else 
             {
-                // SE NÃO TIVER O CARTÃO, EXIBE O AVISO NO CONTROLADOR
                 if (instance_exists(obj_controlador)) 
                 {
-                    obj_controlador.aviso_timer = 120;
-					
+                    obj_controlador.aviso_timer = 90;
                 }
             }
         }
     }
 }
 
-// Lógica de mudar de sala (o que já tínhamos)
+// --- LÓGICA DE TRANSIÇÃO COM O OBJETO NOVO ---
 if (sprite_index == spr_porta_abrindo && image_index >= image_number - 1) 
 {
     image_speed = 0;
@@ -51,24 +42,33 @@ if (sprite_index == spr_porta_abrindo && image_index >= image_number - 1)
     if (!variable_instance_exists(id, "timer_saida")) timer_saida = 80;
     timer_saida -= 1;
     
-    if (timer_saida <= 0) room_goto_next();
+    // Quando o timer zerar, chamamos a transição em vez de mudar de sala direto
+    if (timer_saida <= 0) 
+    {
+        if (!instance_exists(obj_transicao)) 
+        {
+            var _tran = instance_create_depth(0, 0, -9999, obj_transicao);
+            
+            // Aqui você escolhe: 
+            // room_next(room) leva para a próxima sala na lista
+            // rm_terra_2149 levaria para uma sala específica
+            _tran.destino = room_next(room); 
+            
+            // Resetamos o timer para não criar mil transições
+            timer_saida = 999; 
+        }
+    }
 }
 
-
-
-///// ---------PROMPT "[E]" ------------
-
+///// --------- PROMPT "[E]" ------------
 var _dist = distance_to_object(obj_player);
-// Se o player estiver perto e a gaveta estiver fechada
 if (_dist < 20 && !aberta && global.luz_acesa) 
 {
-    // Se o prompt ainda não existe, cria ele
     if (meu_prompt == noone) {
         meu_prompt = instance_create_layer(x - 20, y - 45, "Instances", obj_prompt_interacao);
     }
 } 
 else {
-    // Se o player se afastou ou a gaveta abriu, destrói o prompt
     if (meu_prompt != noone) {
         instance_destroy(meu_prompt);
         meu_prompt = noone;

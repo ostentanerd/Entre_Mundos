@@ -1,4 +1,15 @@
-if (criados < quantidade_inimigos) {
+ if (texto_titulo_timer > 0) {
+    texto_titulo_timer -= 1; // Diminui o tempo a cada frame
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ /*
+  
+  if (criados < quantidade_inimigos) {
     spawn_timer--;
 
     if (spawn_timer <= 0) {
@@ -23,6 +34,7 @@ if (criados < quantidade_inimigos) {
         spawn_timer = 180; 
     }
 }
+*/
 
 
 
