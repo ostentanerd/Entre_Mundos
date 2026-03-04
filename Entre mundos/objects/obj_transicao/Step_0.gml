@@ -3,7 +3,7 @@ alpha += (velocidade * estado);
 
 // FASE 1: A tela ficou totalmente preta
 // No Step do obj_transicao
-if (alpha >= 1 && estado == 1) {
+if (alpha >= 0 && estado == 1) {
     alpha = 1;
     estado = -1; 
     

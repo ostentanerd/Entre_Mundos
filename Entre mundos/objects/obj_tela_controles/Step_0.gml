@@ -1,6 +1,6 @@
 // Verifica se o tempo de espera do Alarm 0 já passou
 if (pode_sair) {
-    if (keyboard_check_pressed(vk_space)) {
+    if (keyboard_check_pressed(vk_enter)) {
         
         // Se o objeto de transição não existir, cria ele
         if (!instance_exists(obj_transicao)) {

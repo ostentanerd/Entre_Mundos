@@ -19,7 +19,7 @@
   "height":46,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"48d47061-31a4-4f70-b94a-bff4ce86778f","blendMode":3,"displayName":"default","isLocked":false,"name":"48d47061-31a4-4f70-b94a-bff4ce86778f","opacity":68.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"48d47061-31a4-4f70-b94a-bff4ce86778f","blendMode":3,"displayName":"default","isLocked":false,"name":"48d47061-31a4-4f70-b94a-bff4ce86778f","opacity":86.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_sangue",
   "nineSlice":null,

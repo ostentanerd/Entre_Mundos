@@ -12,7 +12,7 @@ if (instance_exists(other)) {
 	// No evento de colisão, antes de criar a partícula:
 	var _dir = (obj_player.face == 1) ? 0 : 180; // Direita ou Esquerda
 	part_type_direction(global.part_sangue, _dir - 45, _dir + 45, 0, 0); 
-	part_particles_create(global.part_sistema, other.x, other.y - irandom_range(-15, 15), global.part_sangue, 10);
+	part_particles_create(global.part_sistema, other.x, other.y - irandom_range(-10, 15), global.part_sangue, 25);
    // --- EXPLOSÃO DE SANGUE ---
     // Argumentos: Sistema, X, Y, Tipo de Partícula, Quantidade
     //part_particles_create(global.part_sistema, other.x, other.y - 10, global.part_sangue, 15);

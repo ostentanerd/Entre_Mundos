@@ -9,7 +9,7 @@
 
         // 2. A MÁGICA: Limita o X para ficar entre 10 e 1334
         // Se o cálculo der menos que 10, ele vira 10. Se der mais que 1334, vira 1334.
-        _spawn_x = clamp(_spawn_x, -5, 1274);
+        _spawn_x = clamp(_spawn_x, -5, 2375);
         
         // 3. Define o Y exato que você pediu
         var _spawn_y = 109; 

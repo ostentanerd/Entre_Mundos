@@ -1,0 +1,2 @@
+part_type_destroy(minha_particula);
+part_system_destroy(meu_sistema);

@@ -15,7 +15,7 @@ if (instance_exists(obj_player))
                     aberta = true;
                     global.tem_cartao = false; 
                     
-                    sprite_index = spr_porta_abrindo;
+                    sprite_index = spr_porta_abrindo_elevado;
                     image_index = 0;
                     image_speed = 0.35; 
                     

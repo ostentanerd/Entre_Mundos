@@ -1,6 +1,20 @@
 var _key_fire  = keyboard_check_pressed(ord("K"));
 var _key_knife = keyboard_check_pressed(ord("I"));
 
+if (global.cutscene == true) {
+    hvel = 0; // Trava o movimento horizontal
+    vvel = 0; // Trava o movimento vertical
+    
+    // Deixamos a image_speed quieta para a animação continuar rodando
+    // Se você usa uma sprite específica de parado, pode garantir ela aqui:
+    if (sprite_index != spr_mao) {
+        sprite_index = spr_mao;
+    }
+    
+    exit; // Para o código aqui, impedindo que os comandos de teclado funcionem
+}
+
+
 // --- LÓGICA DE ATAQUE ---
 if ((_key_fire || _key_knife) && obj_player.pode_atirar) 
 {
@@ -29,7 +43,7 @@ if ((_key_fire || _key_knife) && obj_player.pode_atirar)
     // CASO B: Esfaquear (I ou K sem bala)
     else 
     {
-        sprite_index = spr_mao_pistola_facada; 
+        sprite_index = spr_mao_facada; 
         image_index = 0; // Garante que começa do frame 0
         image_speed = 1; 
         
@@ -42,7 +56,7 @@ if ((_key_fire || _key_knife) && obj_player.pode_atirar)
 }
 
 // --- LOGICA DE RETORNO AUTOMÁTICO ---
-if (sprite_index == spr_mao_pistola_atirando || sprite_index == spr_mao_pistola_facada)
+if (sprite_index == spr_mao_pistola_atirando || sprite_index == spr_mao_facada)
 {
     // Usamos -0.5 para dar uma margem de segurança e a animação chegar no último frame visual
     if (image_index >= image_number - 0.5)

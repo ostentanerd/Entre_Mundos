@@ -13,14 +13,16 @@ var _key_heal      = _pode && keyboard_check_pressed(ord("U"));
 
 
 if (global.cutscene == true) {
-    hvel = 0;
-    vvel = 0;
-    image_speed = 0; // Trava o frame atual
-    image_index = 0; // Opcional: força o frame parado
-    exit; 
-} else {
-    // Se a cutscene acabou e ele ainda está parado, devolve a animação
-    if (image_speed == 0) image_speed = 1; 
+    hvel = 0; // Trava o movimento horizontal
+    vvel = 0; // Trava o movimento vertical
+    
+    // Deixamos a image_speed quieta para a animação continuar rodando
+    // Se você usa uma sprite específica de parado, pode garantir ela aqui:
+    if (sprite_index != spr_player_idle) {
+        sprite_index = spr_player_idle;
+    }
+    
+    exit; // Para o código aqui, impedindo que os comandos de teclado funcionem
 }
 
 
@@ -135,7 +137,7 @@ if (instance_exists(meus_bracos)) {
     meus_bracos.y = y;
     meus_bracos.image_xscale = face;
     
-    var _animando = (meus_bracos.sprite_index == spr_mao_pistola_atirando || meus_bracos.sprite_index == spr_mao_pistola_facada);
+    var _animando = (meus_bracos.sprite_index == spr_mao_pistola_atirando || meus_bracos.sprite_index == spr_mao_facada);
     if (!_animando) {
         switch (mao_atual) {
             case 0: meus_bracos.sprite_index = spr_mao; break;
