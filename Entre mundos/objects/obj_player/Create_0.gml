@@ -82,8 +82,8 @@ part_type_size(global.part_sangue, 0.03, 0.04, 0, 0);   // Tamanho (bem pequeno)
 part_type_color1(global.part_sangue, _sangue_escuro);         // Cor vermelha
 part_type_speed(global.part_sangue, 0.7, 1, -0.03, 0);   // Velocidade de saída
 part_type_direction(global.part_sangue, 0, 360, 0, 0);// Direção (para todos os lados)
-part_type_gravity(global.part_sangue, 0.5, 30);      // Gravidade (270 é para baixo)
-part_type_life(global.part_sangue, 8, 12);           // Quanto tempo dura (frames)
+part_type_gravity(global.part_sangue, 0.3, 270);      // Gravidade (270 é para baixo)
+part_type_life(global.part_sangue, 5, 10);           // Quanto tempo dura (frames)
 
 
 

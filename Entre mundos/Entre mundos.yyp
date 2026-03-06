@@ -50,6 +50,7 @@
     {"id":{"name":"obj_escada","path":"objects/obj_escada/obj_escada.yy",},},
     {"id":{"name":"obj_gatilho_cutscene","path":"objects/obj_gatilho_cutscene/obj_gatilho_cutscene.yy",},},
     {"id":{"name":"obj_gaveta","path":"objects/obj_gaveta/obj_gaveta.yy",},},
+    {"id":{"name":"obj_inimigo_geral","path":"objects/obj_inimigo_geral/obj_inimigo_geral.yy",},},
     {"id":{"name":"obj_inimigo_pai","path":"objects/obj_inimigo_pai/obj_inimigo_pai.yy",},},
     {"id":{"name":"obj_item_arma","path":"objects/obj_item_arma/obj_item_arma.yy",},},
     {"id":{"name":"obj_item_cartao","path":"objects/obj_item_cartao/obj_item_cartao.yy",},},

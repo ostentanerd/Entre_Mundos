@@ -34,7 +34,7 @@ if (instance_exists(obj_player))
 }
 
 // --- LÓGICA DE TRANSIÇÃO COM O OBJETO NOVO ---
-if (sprite_index == spr_porta_abrindo && image_index >= image_number - 1) 
+if (sprite_index == spr_porta_abrindo_elevado && image_index >= image_number - 1) 
 {
     image_speed = 0;
     image_index = image_number - 1;

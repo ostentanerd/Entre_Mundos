@@ -17,6 +17,6 @@ if (_exibir_elevador) {
     
     // Efeito de brilho quando a luz bate
     gpu_set_blendmode(bm_add);
-    draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, 0, c_white, 0.2);
+    draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
     gpu_set_blendmode(bm_normal);
 }

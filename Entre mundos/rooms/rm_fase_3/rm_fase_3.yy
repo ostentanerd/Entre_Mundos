@@ -42,6 +42,7 @@
     {"name":"inst_7C7F34CC1","path":"rooms/rm_fase_3/rm_fase_3.yy",},
     {"name":"inst_41530C64_1","path":"rooms/rm_fase_3/rm_fase_3.yy",},
     {"name":"inst_7B17E528_1","path":"rooms/rm_fase_3/rm_fase_3.yy",},
+    {"name":"inst_47BD684","path":"rooms/rm_fase_3/rm_fase_3.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -96,6 +97,7 @@
         {"$GMRInstance":"v4","%Name":"inst_41530C64_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_41530C64_1","objectId":{"name":"obj_vela","path":"objects/obj_vela/obj_vela.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1872.0,"y":76.0,},
         {"$GMRInstance":"v4","%Name":"inst_7B17E528_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7B17E528_1","objectId":{"name":"obj_vela","path":"objects/obj_vela/obj_vela.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2172.0,"y":75.0,},
         {"$GMRInstance":"v4","%Name":"inst_13A868D3_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_13A868D3_1_1","objectId":{"name":"obj_porta_elevador","path":"objects/obj_porta_elevador/obj_porta_elevador.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":947.0,"y":105.0,},
+        {"$GMRInstance":"v4","%Name":"inst_47BD684","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_47BD684","objectId":{"name":"obj_item_cartao","path":"objects/obj_item_cartao/obj_item_cartao.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":864.0,"y":96.0,},
       ],"layers":[],"name":"Velas","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"portas","assets":[
         {"$GMRSpriteGraphic":"v1","%Name":"graphic_18DAEA35_1_1","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_18DAEA35_1_1","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_porta_final","path":"sprites/spr_porta_final/spr_porta_final.yy",},"x":2247.0,"y":32.0,},
