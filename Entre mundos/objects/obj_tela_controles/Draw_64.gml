@@ -43,7 +43,7 @@ if (pode_sair) {
     var _alpha = abs(sin(get_timer() / 250000)); 
     draw_set_alpha(_alpha);
     draw_set_color(c_yellow);
-    draw_text(_x_origem + 80, _y_origem + 280, ">> PRESSIONE [ESPAÇO] PARA INICIAR");
+    draw_text(_x_origem + 80, _y_origem + 280, ">> PRESSIONE [ESC] PARA VOLTAR");
     draw_set_alpha(1);
 }
 

@@ -9,7 +9,7 @@ CONTROLES DE MISSÃO:
 [L]      - Ativar/Desativar Lanterna
 [E]      - Interagir / Usar Explosivos
 
-Pressione [ESPAÇO] para iniciar a infiltração.
+Pressione [ENTER] para iniciar a infiltração.
 ";
 
 pode_sair = false;

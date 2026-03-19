@@ -1,6 +1,6 @@
 // Ler teclas
-var _cima = keyboard_check_pressed(vk_up);
-var _baixo = keyboard_check_pressed(vk_down);
+var _cima = keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W"));
+var _baixo = keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S"));;
 var _entrar = keyboard_check_pressed(vk_enter);
 
 // Mudar seleção
@@ -22,11 +22,19 @@ if (_entrar) {
             global.save_tem_lanterna = false;
             global.checkpoint_room = noone;
 			
-            room_goto(rm_controles); 
+            // Se o objeto de transição não existir, cria ele
+        if (!instance_exists(obj_transicao)) {
+            var _trans = instance_create_depth(0, 0, -9999, obj_transicao);
+            
+            // MUDE "rm_fase_1" para o nome EXATO da sua primeira fase
+            _trans.destino = rm_fase_1; 
+            _trans.estado = 1;
+            _trans.velocidade = 0.02;
+        }
             break;
             
         case 1: // OPÇÕES (Futuro)
-            show_message("Menu de Opções em breve!");
+            room_goto(rm_controles);
             break;
             
         case 2: // SAIR

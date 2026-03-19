@@ -48,6 +48,21 @@ if (global.luz_acesa) {
         draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 8) - _cy, _oscilacao, _oscilacao, 0, c_yellow, 0.8);
     }
 	
+	
+	
+	// --- LUZ DAS ABAJU (ADICIONADO) ---
+    // O 'with' faz o código rodar para TODAS as ABAJU da sala ao mesmo tempo
+    with (obj_abaju) {
+        // Criamos um efeito de oscilação (opcional)
+        var _oscilacao = irandom_range(2.5,3.8); 
+        
+        // Desenhamos a luz da vela. 
+        // Importante: usamos x - _cx para alinhar com a câmera
+        draw_sprite_ext(spr_luz_suave, 0, x - _cx, (y - 8) - _cy, _oscilacao, _oscilacao, 0, c_aqua, 1);
+    }
+	
+	
+	
 	// --- LUZ DO COMPUTADOR (ADICIONADO) ---
     // O 'with' faz o código rodar para TODAS as velas da sala ao mesmo tempo
     with (obj_computador_save) {
