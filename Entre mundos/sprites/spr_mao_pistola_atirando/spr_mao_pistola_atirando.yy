@@ -12,17 +12,17 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"0e78f57c-b7bf-4e45-8b77-d78b2cf407b6","name":"0e78f57c-b7bf-4e45-8b77-d78b2cf407b6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"7371155c-b2a6-460d-9c6d-f1d0e37699e0","name":"7371155c-b2a6-460d-9c6d-f1d0e37699e0","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"700e1fcf-ef71-4731-b602-2b6d3291de07","name":"700e1fcf-ef71-4731-b602-2b6d3291de07","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"079b7fa9-9d03-4ea9-b355-ccba8e265633","name":"079b7fa9-9d03-4ea9-b355-ccba8e265633","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"513b7930-be99-488b-a4fe-0d394fe54ebd","name":"513b7930-be99-488b-a4fe-0d394fe54ebd","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"6cce88dc-8574-4730-a5a8-bbefdc5f11ed","name":"6cce88dc-8574-4730-a5a8-bbefdc5f11ed","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"05733771-41d8-489c-b582-62a21791d9a6","name":"05733771-41d8-489c-b582-62a21791d9a6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"6ddfaa89-351f-4e6d-80f5-7c5b954424dc","name":"6ddfaa89-351f-4e6d-80f5-7c5b954424dc","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":32,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"a195e0c3-1eb3-447a-8709-eccec5127840","blendMode":0,"displayName":"default","isLocked":false,"name":"a195e0c3-1eb3-447a-8709-eccec5127840","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"b7767a1b-17e9-4351-a5ac-eaf7e0bc5eee","blendMode":0,"displayName":"default","isLocked":false,"name":"b7767a1b-17e9-4351-a5ac-eaf7e0bc5eee","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_mao_pistola_atirando",
   "nineSlice":null,
@@ -62,7 +62,7 @@
     },
     "name":"spr_mao_pistola_atirando",
     "playback":1,
-    "playbackSpeed":6.0,
+    "playbackSpeed":7.0,
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
@@ -72,17 +72,17 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0e78f57c-b7bf-4e45-8b77-d78b2cf407b6","path":"sprites/spr_mao_pistola_atirando/spr_mao_pistola_atirando.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"76b4902b-f28f-4353-9e70-670d09c42421","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"513b7930-be99-488b-a4fe-0d394fe54ebd","path":"sprites/spr_mao_pistola_atirando/spr_mao_pistola_atirando.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"bf76f6b5-2286-4f62-923d-c41026fea1ba","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7371155c-b2a6-460d-9c6d-f1d0e37699e0","path":"sprites/spr_mao_pistola_atirando/spr_mao_pistola_atirando.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"65fb64e6-a7c9-4f04-bc0c-87ead271c28a","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6cce88dc-8574-4730-a5a8-bbefdc5f11ed","path":"sprites/spr_mao_pistola_atirando/spr_mao_pistola_atirando.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"2abf5ef2-cc11-4f71-957e-2a8252d45696","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"700e1fcf-ef71-4731-b602-2b6d3291de07","path":"sprites/spr_mao_pistola_atirando/spr_mao_pistola_atirando.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"1c390fc9-1525-4f14-bc96-07fba1d020f1","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"05733771-41d8-489c-b582-62a21791d9a6","path":"sprites/spr_mao_pistola_atirando/spr_mao_pistola_atirando.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"e1e1842c-1872-4d8c-88c7-a3bf6d9789bc","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"079b7fa9-9d03-4ea9-b355-ccba8e265633","path":"sprites/spr_mao_pistola_atirando/spr_mao_pistola_atirando.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"f52d3b16-0705-40ec-a723-e3df6194b018","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6ddfaa89-351f-4e6d-80f5-7c5b954424dc","path":"sprites/spr_mao_pistola_atirando/spr_mao_pistola_atirando.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"ac658e7d-a1a5-4fcf-bd65-249fbf3f7517","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

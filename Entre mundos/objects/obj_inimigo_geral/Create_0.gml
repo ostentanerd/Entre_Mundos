@@ -19,7 +19,7 @@ ponto_b = x + 100;          // Ponto final (100 pixels para a direita)
 destino_x = ponto_b;        // Para onde ele está indo agora
 // No Create, em vez de x + 100
 ponto_b = x + irandom_range(-200, 200);
-estado = "PATRULHANDO";      // Começar patrulhando
+//estado = "PATRULHANDO";      // Começar patrulhando
 
 
 
@@ -34,7 +34,17 @@ switch (tipo_inimigo)
         spr_morto   = spr_zumbi_morto;
 		hp          = choose(3, 5, 7); // Zumbi comum
         velocidade  = 0.5;
-        //estado      = "PARADO"; 
+        estado      = "PARADO"; 
+    break;
+	
+	 case "patrulhan":
+        spr_parado  = spr_zumbi_idle;
+        spr_andando = spr_zumbi_andando;
+        spr_ataque  = spr_zumbi_atacando;
+        spr_morto   = spr_zumbi_morto;
+		hp          = choose(3, 5, 7); // Zumbi comum
+        velocidade  = 0.5;
+        estado = "PATRULHANDO";      // Começar patrulhando
     break;
 
     case "caido":
