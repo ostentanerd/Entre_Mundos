@@ -12,8 +12,8 @@
   "name":"obj_cutscene_dialogo",
   "overriddenProperties":[],
   "parent":{
-    "name":"Object",
-    "path":"folders/Object.yy",
+    "name":"gru_cutscene",
+    "path":"folders/Object/gru_cutscene.yy",
   },
   "parentObjectId":null,
   "persistent":false,

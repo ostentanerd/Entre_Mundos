@@ -31,3 +31,15 @@ if (estado == ESTADO_NORMAL.CAIDO) {
 
 meu_spawner = noone;
 
+
+// Sistema de partículas individual do zumbi
+global.part_sys = part_system_create();
+global.part_sangue = part_type_create();
+
+part_type_shape(global.part_sangue, pt_shape_disk); // Formato de círculo/pingo
+part_type_size(global.part_sangue, 0.08, 0.1, -0.005, 0); // Começa médio e diminui
+part_type_color1(global.part_sangue, c_red); // Sangue vermelho!
+part_type_speed(global.part_sangue, 1.5, 3, -0.1, 0); // Velocidade do espirro
+part_type_direction(global.part_sangue, 0, 360, 0, 10); // Espirra para todos os lados
+part_type_life(global.part_sangue, 10, 25); // Dura meio segundo na tela
+

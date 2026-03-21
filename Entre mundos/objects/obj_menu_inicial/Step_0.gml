@@ -1,6 +1,6 @@
 // Ler teclas
 var _cima = keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W"));
-var _baixo = keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S"));;
+var _baixo = keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S"));
 var _entrar = keyboard_check_pressed(vk_enter);
 
 // Mudar seleção

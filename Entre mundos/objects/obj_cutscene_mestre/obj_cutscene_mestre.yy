@@ -9,8 +9,8 @@
   "name":"obj_cutscene_mestre",
   "overriddenProperties":[],
   "parent":{
-    "name":"Object",
-    "path":"folders/Object.yy",
+    "name":"gru_cutscene",
+    "path":"folders/Object/gru_cutscene.yy",
   },
   "parentObjectId":null,
   "persistent":false,

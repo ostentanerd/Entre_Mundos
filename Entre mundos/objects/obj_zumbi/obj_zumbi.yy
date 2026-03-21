@@ -37,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_zumbi_idle",
-    "path":"sprites/spr_zumbi_idle/spr_zumbi_idle.yy",
+    "name":"spr_zumbi_caido",
+    "path":"sprites/spr_zumbi_caido/spr_zumbi_caido.yy",
   },
   "spriteMaskId":null,
   "visible":true,

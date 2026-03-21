@@ -9,10 +9,7 @@
     "name":"grp_inimigo",
     "path":"folders/Object/grp_inimigo.yy",
   },
-  "parentObjectId":{
-    "name":"obj_zumbi",
-    "path":"objects/obj_zumbi/obj_zumbi.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,10 +27,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_zumbi_caido",
-    "path":"sprites/spr_zumbi_caido/spr_zumbi_caido.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

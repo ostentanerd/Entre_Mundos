@@ -10,7 +10,7 @@ if (estado != ESTADO_NORMAL.MORTO) {
 
     // 2. CRIAR AS PARTÍCULAS:
     // Aumentamos para 25 como você colocou, e ajustamos a altura
-    part_particles_create(global.part_sistema, x, y - irandom_range(-15, 15) , global.part_sangue, 25);
+    part_particles_create(global.part_sys, x, y - irandom_range(-15, 15) , global.part_sangue, 25);
     
     flash = 3; 
 

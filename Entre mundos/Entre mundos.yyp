@@ -15,6 +15,7 @@
     {"$GMFolder":"","%Name":"gpr_itens","folderPath":"folders/Object/gpr_itens.yy","name":"gpr_itens","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"grp_inimigo","folderPath":"folders/Object/grp_inimigo.yy","name":"grp_inimigo","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"grp_payer","folderPath":"folders/Object/grp_payer.yy","name":"grp_payer","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"gru_cutscene","folderPath":"folders/Object/gru_cutscene.yy","name":"gru_cutscene","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Room","folderPath":"folders/Room.yy","name":"Room","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Script","folderPath":"folders/Script.yy","name":"Script","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprite","folderPath":"folders/Sprite.yy","name":"Sprite","resourceType":"GMFolder","resourceVersion":"2.0",},

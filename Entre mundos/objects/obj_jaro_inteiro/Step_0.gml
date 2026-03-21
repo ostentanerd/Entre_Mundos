@@ -1,5 +1,5 @@
 // 1. Variáveis de entrada e distância
-var _distancia = distance_to_object(obj_player);
+/*var _distancia = distance_to_object(obj_player);
 var _tecla_faca = keyboard_check_pressed(ord("I"));
 var _tecla_tiro = keyboard_check_pressed(ord("K"));
 
@@ -8,7 +8,7 @@ var _tecla_tiro = keyboard_check_pressed(ord("K"));
 var _deu_facada = (_tecla_faca) || (_tecla_tiro && global.municao <= 0);
 
 // 3. Verificação de proximidade e se já não está quebrada
-if (_distancia < 5 && !quebrada) 
+if (_distancia < 2 && !quebrada) 
 {
     // SÓ QUEBRA SE A CONDIÇÃO DE FACADA FOR VERDADEIRA
     if (_deu_facada) 

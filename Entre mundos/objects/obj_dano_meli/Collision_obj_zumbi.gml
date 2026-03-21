@@ -13,18 +13,19 @@ if (instance_exists(other))
         // Feedback visual
         other.flash = 1;
         
-        // --- SISTEMA DE SANGUE ---
-        // Pegamos a direção baseada na face do player para o sangue voar certo
-        var _dir = (obj_player.image_xscale == 1) ? 0 : 180; 
-        part_type_direction(other.part_sangue, _dir - 25, _dir + 25, 0, 0); 
-		
-        // Cria 10 gotas de sangue na posição do tiro
+        // 1. DEFINIR A DIREÇÃO: Pegamos a direção da bala (other)
+    // Usamos part_type_direction para dizer ao sangue para onde ir antes de criá-lo
+    var _dir_bala = other.direction;
+    part_type_direction(part_sangue, _dir_bala - 25, _dir_bala + 25, 0, 0);
+
+    // 2. CRIAR AS PARTÍCULAS:
+	 // Cria 10 gotas de sangue na posição do tiro
         repeat(10) 
 		{
-        // Criamos as partículas na posição do inimigo
-			part_particles_create(other.part_sys, x, y - irandom_range(-5, 10), other.part_sangue, 1);
+			// Aumentamos para 25 como você colocou, e ajustamos a altura
+			part_particles_create(part_sys, x, y - irandom_range(-15, 15), part_sangue, 1);
 		}
-		
+   
         // A faca some ao atingir um alvo vivo
         instance_destroy();
     }

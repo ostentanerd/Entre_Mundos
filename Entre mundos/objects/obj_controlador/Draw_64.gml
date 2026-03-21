@@ -190,6 +190,10 @@ draw_set_valign(fa_top);
 
 
 
+
+
+
+
 // --- FIM DA ESCALA DA HUD ---
 // Reseta a escala para não afetar outras coisas (como o mouse ou filtros)
 matrix_set(matrix_world, matrix_build_identity());

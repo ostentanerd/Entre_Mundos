@@ -1,6 +1,6 @@
 // 1. Seguir o Player (Mantendo seu código original)
 if (instance_exists(obj_player)) {
-    x = lerp(x, obj_player.x, 0.4); 
+    x = lerp(x, obj_player.x, 0.8); 
     y = lerp(y, obj_player.y - 11, 0.4);
     image_xscale = obj_player.face;
 }
