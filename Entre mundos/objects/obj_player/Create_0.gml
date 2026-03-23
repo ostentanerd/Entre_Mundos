@@ -54,7 +54,7 @@ distancia_knockback = 4; // Força do empurrão
 global.luz_acesa = false; // A lanterna começa desligada
 
 // Criando o objeto das mãos
-meus_bracos = instance_create_layer(x, y, "Instances", obj_player_maos);
+meus_bracos = instance_create_layer(x, y, "Lanterna", obj_player_maos);
 
 global.meu_lanterna = instance_create_layer(x, y, "Lanterna", obj_lanterna);
 
@@ -64,6 +64,13 @@ if (global.tem_pistola == true) {
 } else {
     mao_atual = 0; // Começa de mão vazia
 }
+
+
+
+//// ------------ ESCADA ---------
+// --- VARIÁVEIS DA ESCADA ---
+na_escada = false;
+velocidade_path = 0.007; // Velocidade de subida (1% do caminho por frame)
 
 /*////  -----------SANGUE---------
 

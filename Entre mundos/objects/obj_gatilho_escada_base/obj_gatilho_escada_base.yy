@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"obj_escada",
+  "%Name":"obj_gatilho_escada_base",
   "eventList":[],
   "managed":true,
-  "name":"obj_escada",
+  "name":"obj_gatilho_escada_base",
   "overriddenProperties":[],
   "parent":{
     "name":"Object",
@@ -28,9 +28,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_escada",
-    "path":"sprites/spr_escada/spr_escada.yy",
+    "name":"Sprite54",
+    "path":"sprites/Sprite54/Sprite54.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

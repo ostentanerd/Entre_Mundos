@@ -2,7 +2,7 @@
   "$GMSprite":"v2",
   "%Name":"spr_jaro_inteiro",
   "bboxMode":2,
-  "bbox_bottom":42,
+  "bbox_bottom":44,
   "bbox_left":9,
   "bbox_right":17,
   "bbox_top":30,

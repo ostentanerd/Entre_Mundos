@@ -163,9 +163,10 @@ if (texto_titulo_timer > 0) {
 }
 
 
-var _largura = window_get_width();
+/*var _largura = window_get_width();
 var _altura = window_get_height();
 display_set_gui_size(_largura, _altura);
+*/
 
 
 

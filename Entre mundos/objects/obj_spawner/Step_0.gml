@@ -7,7 +7,7 @@ if (criados < quantidade_inimigos) {
         var _distancia = 400; 
         var _spawn_x = obj_player.x + (_lado * _distancia);
         _spawn_x = clamp(_spawn_x, -5, 2375); // Garante que não nasça fora do mapa
-        var _spawn_y = 109; 
+        var _spawn_y = 113; //Chão do inimigo 
 
         // 2. DEFINIR QUAL TIPO VAI NASCER NESSA FASE
         var _tipo_escolhido = "normal"; // Começa como normal por padrão
@@ -17,7 +17,7 @@ if (criados < quantidade_inimigos) {
             _tipo_escolhido = "caido";  // Na fase 1, só zumbis deitados
         } 
         else if (room == rm_fase_2) {
-            _tipo_escolhido = choose("normal", "caido"); // Na fase 2, misturado!
+            _tipo_escolhido = choose("normal","caido", "PATRULHANDO"); // Na fase 2, misturado!
         }
 
         // 3. A MÁGICA: Criar o inimigo enviando o tipo dele

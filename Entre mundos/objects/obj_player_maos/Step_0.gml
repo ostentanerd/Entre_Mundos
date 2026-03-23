@@ -53,6 +53,19 @@ if (sprite_index == spr_mao_pistola_atirando || sprite_index == spr_mao_pistola_
     }
 }
 
+//ESCADA
+if (instance_exists(obj_player)) {
+    // Segue a posição do corpo
+    x = obj_player.x + (x_offset * obj_player.face);
+    y = obj_player.y + y_offset;
+    image_xscale = obj_player.face;
+
+    // A MÁGICA: Elas sempre copiam o "nível" do player, mas ficam um tiquinho à frente dele
+    // Se o player for 200 (atrás), a mão vira 199 (atrás da escada, mas na frente do corpo)
+    depth = obj_player.depth - 1;
+}
+
+
 // No Step do obj_lanterna e obj_player_maos:
 if (instance_exists(obj_player)) {
     x = obj_player.x;

@@ -1,0 +1,24 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_escada",
+  "closed":false,
+  "kind":1,
+  "name":"pth_escada",
+  "parent":{
+    "name":"Path",
+    "path":"folders/Path.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":2080.0,"y":256.0,},
+    {"speed":100.0,"x":2080.0,"y":256.0,},
+    {"speed":100.0,"x":2112.0,"y":246.0,},
+    {"speed":100.0,"x":2176.0,"y":192.0,},
+    {"speed":100.0,"x":2176.0,"y":192.0,},
+    {"speed":100.0,"x":2208.0,"y":160.0,},
+    {"speed":100.0,"x":2240.0,"y":128.0,},
+    {"speed":100.0,"x":2272.0,"y":127.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

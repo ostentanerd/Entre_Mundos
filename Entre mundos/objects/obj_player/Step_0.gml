@@ -160,6 +160,69 @@ if (window_has_focus()) {
 
 // --- LANTERNA ---
 
+//// ------------ ESCADA ---------
+// 1. Sentir os gatilhos e botões
+var _subir = keyboard_check(ord("W"));
+var _descer = keyboard_check(ord("S"));
+var _base  = instance_place(x, y, obj_gatilho_escada_base);
+var _topo  = instance_place(x, y, obj_gatilho_escada_topo);
+
+// 2. Entrar na Escada
+if (!na_escada) {
+    if (_base != noone && _subir) {
+        na_escada = true;
+        path_start(pth_escada, 0, path_action_stop, true);
+        path_position = 0;
+    }
+    if (_topo != noone && _descer) {
+        na_escada = true;
+        path_start(pth_escada, 0, path_action_stop, true);
+        path_position = 1;
+    }
+}
+
+// --- 3. MOVIMENTO DENTRO DA ESCADA ---
+if (na_escada) {
+    hsp = 0; vsp = 0; // Trava a física normal
+    
+    // Define para qual lado a escada está (Ajuste isso!)
+    // Se a escada sobe para a DIREITA, use 1. Se sobe para a ESQUERDA, use -1.
+    var _lado_escada = 1; 
+
+    if (_subir) { 
+        path_position += velocidade_path; 
+        sprite_index = spr_player_andando; // Usa a animação de andar
+        image_speed = 1;                   // Faz a animação rodar
+        face = _lado_escada;               // Vira o corpo para o lado da escada
+    } 
+    else if (_descer) { 
+        path_position -= velocidade_path; 
+        sprite_index = spr_player_andando;
+        image_speed = 1;
+        face = -_lado_escada;              // Vira para o lado oposto ao descer
+    } 
+    else { 
+        // Se estiver parado na escada
+        sprite_index = spr_player_idle;    // Ou uma sprite de "parado na escada"
+        image_speed = 0; 
+        image_index = 0; 
+    }
+
+    depth = 200; // Atrás da imagem da escada
+
+    // Sair da escada
+    if (path_position >= 1 || path_position <= 0) {
+        path_end();
+        na_escada = false;
+    }
+}
+else {
+    // Profundidade normal do Player (Sempre na frente)
+    depth = -100; 
+}
+
+
+
 
 // --- INVULNERABILIDADE ---
 if (!pode_tomar_dano) {

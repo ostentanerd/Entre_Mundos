@@ -41,3 +41,15 @@ if (keyboard_check_pressed(ord("L"))) {
         sprite_index = spr_lanterna_apagada;
     }
 }
+
+//ESCADA
+if (instance_exists(obj_player)) {
+    // Segue a posição do corpo
+    x = obj_player.x + (x_offset * obj_player.face);
+    y = obj_player.y + y_offset;
+    image_xscale = obj_player.face;
+
+    // A MÁGICA: Elas sempre copiam o "nível" do player, mas ficam um tiquinho à frente dele
+    // Se o player for 200 (atrás), a mão vira 199 (atrás da escada, mas na frente do corpo)
+    depth = obj_player.depth - 1;
+}
