@@ -14,8 +14,8 @@
   "exportDir":"",
   "name":"snd_musica_save",
   "parent":{
-    "name":"Entre mundos",
-    "path":"Entre mundos.yyp",
+    "name":"Sons",
+    "path":"folders/Sons.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

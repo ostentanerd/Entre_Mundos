@@ -167,17 +167,35 @@ var _descer = keyboard_check(ord("S"));
 var _base  = instance_place(x, y, obj_gatilho_escada_base);
 var _topo  = instance_place(x, y, obj_gatilho_escada_topo);
 
-// 2. Entrar na Escada
+// 2. ENTRANDO NA ESCADA (COM SUAVIZAÇÃO)
 if (!na_escada) {
+    // Se está na base e quer subir
     if (_base != noone && _subir) {
-        na_escada = true;
-        path_start(pth_escada, 0, path_action_stop, true);
-        path_position = 0;
+        // 1. Move o X do player suavemente para o centro do gatilho (0.2 é a velocidade do deslize)
+        x = lerp(x, _base.x, 0.05);
+        
+        // 2. Só entra no Path quando estiver "perto o suficiente" do centro (menos de 2 pixels)
+        if (abs(x - _base.x) < 2) {
+            x = _base.x; // Trava no centro exato para evitar bugs
+            na_escada = true;
+            path_start(_base.meu_path, 0, path_action_stop, true);
+            path_position = 0;
+            lado_escada_atual = _base.meu_lado;
+        }
     }
+    
+    // Se está no topo e quer descer
     if (_topo != noone && _descer) {
-        na_escada = true;
-        path_start(pth_escada, 0, path_action_stop, true);
-        path_position = 1;
+        // Faz a mesma suavização no X
+        x = lerp(x, _topo.x, 0.2);
+        
+        if (abs(x - _topo.x) < 2) {
+            x = _topo.x;
+            na_escada = true;
+            path_start(_topo.meu_path, 0, path_action_stop, true);
+            path_position = 1;
+            lado_escada_atual = _topo.meu_lado;
+        }
     }
 }
 
@@ -191,15 +209,19 @@ if (na_escada) {
 
     if (_subir) { 
         path_position += velocidade_path; 
-        sprite_index = spr_player_andando; // Usa a animação de andar
-        image_speed = 1;                   // Faz a animação rodar
-        face = _lado_escada;               // Vira o corpo para o lado da escada
+        sprite_index = spr_player_andando;
+        image_speed = 1;
+        
+        // Agora usamos a variável que pegamos do gatilho!
+        face = lado_escada_atual; 
     } 
     else if (_descer) { 
         path_position -= velocidade_path; 
         sprite_index = spr_player_andando;
         image_speed = 1;
-        face = -_lado_escada;              // Vira para o lado oposto ao descer
+        
+        // Ao descer, ele olha para o lado oposto da subida
+        face = -lado_escada_atual; 
     } 
     else { 
         // Se estiver parado na escada

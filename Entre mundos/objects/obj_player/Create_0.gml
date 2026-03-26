@@ -70,7 +70,8 @@ if (global.tem_pistola == true) {
 //// ------------ ESCADA ---------
 // --- VARIÁVEIS DA ESCADA ---
 na_escada = false;
-velocidade_path = 0.007; // Velocidade de subida (1% do caminho por frame)
+velocidade_path = 0.004; // Velocidade de subida (1% do caminho por frame)
+lado_escada_atual = 1; // Variável para guardar o lado da escada que estou subindo
 
 /*////  -----------SANGUE---------
 
