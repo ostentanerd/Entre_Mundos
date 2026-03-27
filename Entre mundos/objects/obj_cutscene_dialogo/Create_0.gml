@@ -23,7 +23,7 @@ quem[6] = "GENERAL";
 fala[7] = "Regras de combate?";
 quem[7] = "AGENTE ZERO";
 
-fala[8] = "[A], [D] para se mover. [I] para faca (silencioso). [K] para abrir fogo quando o silêncio não for opção. \n [U] para usar o kit médico. Você vai precisar. [L] para lanterna. A outra dimensão é escura. [E] para interagir.";
+fala[8] = "[A], [D] para se mover. [I] para faca. [K] para abrir fogo. \n [U] para usar o kit médico, você vai precisar. [L] para lanterna, a outra dimensão é escura. [E] para interagir.";
 quem[8] = "GENERAL";
 
 fala[9] = "E se o portal fechar?";
@@ -35,15 +35,12 @@ quem[10] = "GENERAL";
 fala[11] = "Hora de limpar outra dimensão.";
 quem[11] = "AGENTE ZERO";
 
-fala[12] = "Boa sorte, Zero. E lembre-se... Não confie na escuridão. Lá, ela respira.";
+fala[12] = "Aviso: use sua lanterna nas paredes. \nAlgumas anomalias e suprimentos só se revelam sob a luz direta.";
 quem[12] = "GENERAL";
 
-fala[12] = "Boa sorte, Zero. E lembre-se... Não confie na escuridão. Lá, ela respira.";
-quem[12] = "GENERAL";
-
-// --- NOVA FALA ADICIONADA ---
-fala[13] = "E um último aviso: use sua lanterna nas paredes. \nAlgumas anomalias e suprimentos só se revelam sob a luz direta.";
+fala[13] = "Boa sorte, Zero. E lembre-se... Não confie na escuridão. Lá, ela respira.";
 quem[13] = "GENERAL";
+
 
 total_passos = 13; // <-- ATUALIZADO PARA 13
 passo = 1;

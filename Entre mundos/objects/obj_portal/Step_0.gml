@@ -17,6 +17,9 @@ if (instance_exists(obj_player))
             sprite_index = spr_portal_abrindo; // Sua sprite do portal abrindo
             image_index = 0;
             image_speed = 1;
+			
+		
+	
             
             // Destrói o prompt assim que interage
             if (meu_prompt != noone) {

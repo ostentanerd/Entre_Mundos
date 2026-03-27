@@ -20,7 +20,7 @@ if (!surface_exists(surf)) {
 surface_set_target(surf);
 
     // Pinta a tela toda de preto
-    draw_clear_alpha(c_black, 0.85); 
+    draw_clear_alpha(c_black, 0.95); 
 
     // Ativa o modo de "furar" o preto
     gpu_set_blendmode(bm_subtract);

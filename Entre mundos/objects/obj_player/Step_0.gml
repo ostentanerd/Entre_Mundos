@@ -15,8 +15,9 @@ var _key_heal      = _pode && keyboard_check_pressed(ord("U"));
 if (global.cutscene == true) {
     hvel = 0;
     vvel = 0;
-    image_speed = 0; // Trava o frame atual
-    image_index = 0; // Opcional: força o frame parado
+	sprite_index = spr_player_idle; // Garante que ele fique parado na pose certa
+   // image_index = 1; // Opcional: força o frame parado
+	image_speed = 1; // Trava o frame atual
     exit; 
 } else {
     // Se a cutscene acabou e ele ainda está parado, devolve a animação

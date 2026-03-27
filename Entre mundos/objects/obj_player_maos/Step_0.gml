@@ -4,6 +4,26 @@ var _key_knife = keyboard_check_pressed(ord("I"));
 // --- LÓGICA DE ATAQUE ---
 if ((_key_fire || _key_knife) && obj_player.pode_atirar) 
 {
+	
+	
+	if (global.cutscene == true) 
+	{
+		hvel = 0;
+		vvel = 0;
+		
+		image_speed = 1; // Trava o frame atual
+		exit; 
+	} 
+	else 
+	{
+	    // Se a cutscene acabou e ele ainda está parado, devolve a animação
+	    if (image_speed == 0) image_speed = 1; 
+	}
+	
+
+
+
+
     // Se for tiro (K + Bala + Pistola)
     if (_key_fire && global.tem_pistola && global.municao > 0) 
     {
@@ -21,7 +41,8 @@ if ((_key_fire || _key_knife) && obj_player.pode_atirar)
         obj_player.pode_atirar = false;
         obj_player.alarm[0] = obj_player.delay_tiro;
         
-        if (instance_exists(obj_camera)) {
+        if (instance_exists(obj_camera)) 
+		{
             obj_camera.shake_power = 2;
             obj_camera.shake_intensidade = 1;
         }
@@ -71,3 +92,5 @@ if (instance_exists(obj_player)) {
     x = obj_player.x;
     y = obj_player.y;
 }
+
+
