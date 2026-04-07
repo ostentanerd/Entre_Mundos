@@ -122,24 +122,26 @@ if (instance_exists(obj_player))
 	
 }
 
+// No Draw GUI do obj_controlador
+// NO EVENTO DRAW GUI DO OBJ_CONTROLADOR
 if (aviso_timer > 0) {
-    draw_set_font(fnt_itens); // Usa a fonte que você já criou
+    // Pegamos a largura e altura da INTERFACE, não da Câmera
+    var _gui_w = display_get_gui_width();
+    var _gui_h = display_get_gui_height();
+    
+    var _x = _gui_w / 2;
+    var _y = 150; // Posição fixa no topo da tela
+
+    draw_set_font(fnt_itens);
     draw_set_halign(fa_center);
     
-    var _x_centro = display_get_gui_width() / 2;
-    var _y_mensagem =150; // Altura da mensagem na tela
-
-    // Desenha uma sombra preta primeiro (para destacar)
-    draw_set_color(c_dkgray);
-    draw_text(_x_centro + 2, _y_mensagem -20, "Precida do KayCard");
-
-    // Desenha o texto principal em Vermelho ou Amarelo
-    draw_set_color(c_white); 
-    draw_text(_x_centro + 2, _y_mensagem -20, "Precida do KayCard");
+    // Desenha o aviso
+    draw_set_color(c_black);
+    draw_text(_x + 2, _y + 2, "PRECISA DO KEYCARD");
+    draw_set_color(c_yellow);
+    draw_text(_x, _y, "PRECISA DO KEYCARD");
     
-    // SEMPRE RESETAR A COR
     draw_set_color(c_white);
-    draw_set_halign(fa_left);
 }
 
 if (texto_titulo_timer > 0) {
@@ -163,10 +165,10 @@ if (texto_titulo_timer > 0) {
 }
 
 
-/*var _largura = window_get_width();
+var _largura = window_get_width();
 var _altura = window_get_height();
 display_set_gui_size(_largura, _altura);
-*/
+
 
 
 

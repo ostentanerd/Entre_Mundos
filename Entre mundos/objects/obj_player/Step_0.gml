@@ -101,25 +101,30 @@ if (place_meeting(x, y + vsp, obj_chao_normal)) {
 }
 y += vsp;
 
-// ---- INTERAGIR (PEGAR ITENS) ----
+// ---- INTERAGIR (PEGAR ITENS E ATIVAR OBJETOS) ----
 if (_key_interact) {
+    
+    // 1. CHECAR ITENS (O que você já tinha)
     var _item = instance_place(x, y, obj_item_pai);
     if (_item != noone) {
-        if (_item.tipo == "arma") {
-            global.tem_pistola = true; 
-            mao_atual = 1;
-            global.municao += 10;
-        }
-        else if (_item.tipo == "municao") {
-            global.municao += _item.quantidade;
-        }
-        else if (_item.tipo == "cartao") {
-            global.tem_cartao = true; 
-        }
-        else if (_item.tipo == "medkits") {
-            global.medkits += 1; 
-        }
+        if (_item.tipo == "arma") { global.tem_pistola = true; mao_atual = 1; global.municao += 10; }
+        else if (_item.tipo == "municao") { global.municao += _item.quantidade; }
+        else if (_item.tipo == "cartao") { global.tem_cartao = true; }
+        else if (_item.tipo == "medkits") { global.medkits += 1; }
+        
         instance_destroy(_item);
+        exit; // Se pegou um item, para por aqui para não abrir a porta no mesmo frame
+    }
+
+    // 2. CHECAR OBJETOS (Elevador, Porta, Portal)
+    // Procuramos o objeto interativo mais próximo
+    var _alvo = instance_nearest(x, y, obj_interativo_pai);
+    
+    // Se estiver perto (distância de 25 pixels)
+    if (_alvo != noone && distance_to_object(_alvo) < 25) {
+        with(_alvo) {
+            event_user(0); // Manda o objeto executar o seu "User Event 0"
+        }
     }
 }
 
@@ -161,7 +166,7 @@ if (window_has_focus()) {
 
 // --- LANTERNA ---
 
-//// ------------ ESCADA ---------
+//// ------------ ESCADA DIAGONAL ---------
 // 1. Sentir os gatilhos e botões
 var _subir = keyboard_check(ord("W"));
 var _descer = keyboard_check(ord("S"));

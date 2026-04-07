@@ -59,6 +59,7 @@ if (instance_exists(view_target))
     shake_power = max(0, shake_power - shake_decay);
     // -----------------------------------------
 
-    camera_set_view_pos(view_camera[0], _final_x, _final_y);
+   // Arredondamos para evitar tremor visual nos pixels
+	camera_set_view_pos(view_camera[0], floor(_final_x), floor(_final_y));
 }
 

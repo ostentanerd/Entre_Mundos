@@ -10,8 +10,8 @@
   "name":"obj_portal",
   "overriddenProperties":[],
   "parent":{
-    "name":"Object",
-    "path":"folders/Object.yy",
+    "name":"grp_portas",
+    "path":"folders/Object/grp_portas.yy",
   },
   "parentObjectId":null,
   "persistent":false,

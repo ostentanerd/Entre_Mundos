@@ -17,4 +17,4 @@ if (global.checkpoint_room != noone && room_exists(global.checkpoint_room)) {
 var _tran = instance_create_layer(0, 0, "Instances", obj_transicao);
 _tran.destino = _alvo; // Aqui você entrega o valor para o obj_transicao
 _tran.estado = 1;
-_tran.velocidade = 0.02;
+_tran.velocidade = 0.06;

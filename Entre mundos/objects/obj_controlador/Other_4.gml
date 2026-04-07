@@ -57,8 +57,8 @@ switch (room)
 		audio_sound_gain(_musica_atuall, 0.5, 2000);     // Sobe para 0.5 em 2 segundos (2000ms)
         break;
 
-    case rm_fase_boss:
-        audio_play_sound(snd_musica_boss, 15, true); // Prioridade maior para o Boss!
+    case rm_final:
+       // audio_play_sound(snd_musica_boss, 15, true); // Prioridade maior para o Boss!
         break;
         
     default:

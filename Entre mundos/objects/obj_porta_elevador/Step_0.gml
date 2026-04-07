@@ -1,4 +1,4 @@
-// 1. Checar se o player existe para não dar erro
+/*// 1. Checar se o player existe para não dar erro
 if (instance_exists(obj_player)) 
 {
     var _distancia = distance_to_object(obj_player);
@@ -31,7 +31,7 @@ if (instance_exists(obj_player))
             }
         }
     }
-}
+}*/
 
 // --- LÓGICA DE TRANSIÇÃO COM O OBJETO NOVO ---
 if (sprite_index == spr_porta_abrindo && image_index >= image_number - 1) 
